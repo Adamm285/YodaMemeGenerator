@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Giphy Search</title>
+    <!-- Bootstrap CSS CDN  -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+    <style>
+        .card-body a {
+            word-break: break-all;
+        }
+
+        .articleHeadline {
+            line-height: 1.5;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron" style="background-color: rgb(69, 190, 170) ; color: white;">
+            <h1 class="text-center">
+                <strong>
+                    <i class="fa fa-newspaper-o">Yoda Meme Generator</i></strong>
+            </h1>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <br>
+                <div class="card">
+                    <div class="card-header">
+                        <strong>
+                            <i class="giphy-list-alt"> Search Parameters</i></strong>
+                    </div>
+                    <div class="card-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="search">Search Term:</label>
+                                <input type="text" class="form-control" id="search-term">
+                            </div>
+                            <button type="submit" class="btn btn-default" id="run-search">
+                                <i class="giphy-search"> Search</i></button>
+                            <button class="btn btn-default" id="clear-all">
+                                <i class="giphy-trash"> Clear Results</i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-sm-12">
+                    <br>
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>
+                                <i class="giphy-table list-group" id=""> buttons</i></strong>
+                        </div>
+                        <div class="card-body" id="buttons-view">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <br>
+                <div class="card">
+                    <div class="card-header">
+                        <strong>
+                            <i class="meme-table"> Results</i></strong>
+                    </div>
+                    <div class="card-body" id="meme-section">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <br>
+                <div class="card">
+                    <div class="card-header">
+                        <strong>
+                            <i class="trans-table"> Translator</i></strong>
+                    </div>
+                    <div class="card-body" id="trans-section">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/logic.js"></script>
+</body>
+
+</html>
