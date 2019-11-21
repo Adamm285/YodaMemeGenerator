@@ -4,15 +4,20 @@ var topics = ["baby yoda", "yoda", ];
 // 
 function topicInfo() {
     event.preventDefault();
-    var q = $(this).attr("data-topic");
-    var queryURL = "https://api.giphy.com/v1/gifs/search?&q=" +
-        q + "&api_key=roxSMmfrpjx5oCeWIrawLb3xWGXfKDnN";
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (res) {
-        console.log("---------------\nURL: " + queryURL + "\n---------------");
-        console.log(q);
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://ronreiter-meme-generator.p.rapidapi.com/meme?font=Impact&font_size=50&meme=Condescending-Wonka&top=Top%20text&bottom=Bottom%20text",
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "ronreiter-meme-generator.p.rapidapi.com",
+            "x-rapidapi-key": "8cbc079c1dmsh23d13dcb3653048p16f423jsn635842feeaf6"
+        }
+    }
+    
+    $.ajax(settings).then(function (res) {
+        // console.log("---------------\nURL: " + queryURL + "\n---------------");
+        // console.log(q);
         console.log(res.data);
         var results = res.data;
           for (var i = 0; i < 10; i++) {
