@@ -4,16 +4,30 @@ var topics = ["baby yoda", "yoda", ];
 // 
 function topicInfo() {
     event.preventDefault();
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://ronreiter-meme-generator.p.rapidapi.com/meme?font=Impact&font_size=50&meme=Condescending-Wonka&top=Top%20text&bottom=Bottom%20text",
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-host": "ronreiter-meme-generator.p.rapidapi.com",
-            "x-rapidapi-key": "8cbc079c1dmsh23d13dcb3653048p16f423jsn635842feeaf6"
-        }
+    
+    "success": true,
+    "data": {
+        "memes": [
+            {
+                "id": "61579",
+                "name": "One Does Not Simply",
+                "url": "https://i.imgflip.com/1bij.jpg",
+                "width": 568,
+                "height": 335,
+                "box_count": 2
+            },
+            {
+                "id": "101470",
+                "name": "Ancient Aliens",
+                "url": "https://i.imgflip.com/26am.jpg",
+                "width": 500,
+                "height": 437,
+                "box_count": 2
+            }
+            // probably a lot more memes here..
+        ]
     }
+}
     
     $.ajax(settings).then(function (res) {
         // console.log("---------------\nURL: " + queryURL + "\n---------------");
@@ -31,7 +45,7 @@ function topicInfo() {
           }
     });
 };
-// 
+//
 function renderButtons() {
     $("#buttons-view").empty();
     for (var i = 0; i < topics.length; i++) {
@@ -57,3 +71,19 @@ function clear() {
 }
 // 
 $("#clear-all").on("click", clear);
+
+/*
+TODO:
+- initialize firebase  
+- connect to  yoda translator api without access errors
+- connect to meme generator api without access errors
+- on click event to take user input
+- pass user input through yoda translator
+- populate new phrase from yoda
+- user choses meme
+- user appends phrase to top or bottom of meme
+- store user created memes in firebase
+
+TODO: current errors:
+-connection issue with api (key error could by information or api)
+*/
