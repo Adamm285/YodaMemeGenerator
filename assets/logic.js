@@ -6,29 +6,44 @@ function topicInfo() {
     event.preventDefault();
     var cors = "https://cors-anywhere.herokuapp.com/";
     var queryURL = cors + "https://imgflip.com/memegenerator/" +
-    q;
+        q;
     var q = $(this).attr("data-topic");
-
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (res) {
-        console.log("---------------\nURL: " + queryURL + "\n---------------");
-        console.log(q);
-        console.log(res);
-        var results = res.data;
-        for (var i = 0; i < 10; i++) {
-            var memelDiv = $("<div>");
-            // var p = $("<p>").text("Rating: " + results[i].rating);
-            var memeImage = $("<img>");
-            memeImage.attr("src", results.data.memes[i].url);
-            // animalDiv.append(p);
-            memeDiv.append(memeImage);
-            $("#meme-section").prepend(memeDiv);
-            
-            
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://ronreiter-meme-generator.p.rapidapi.com/meme?font=Impact&font_size=50&meme=Condescending-Wonka&top=Top%20text&bottom=Bottom%20text",
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "ronreiter-meme-generator.p.rapidapi.com",
+            "x-rapidapi-key": "8cbc079c1dmsh23d13dcb3653048p16f423jsn635842feeaf6"
         }
+    }
+
+    $.ajax(settings).done(function (response) {
+        var memeImage = $("<img>");
+        memeImage.attr("src", "data:image/jpeg;" + response);
+        $("#meme-section").prepend(memeImage);
+        console.log(response);
     });
+    // $.ajax({
+    //     url: queryURL,
+    //     method: "GET"
+    // }).then(function (res) {
+    //     console.log("---------------\nURL: " + queryURL + "\n---------------");
+    //     console.log(q);
+    //     console.log(res);
+    //     var results = res.data;
+    //     for (var i = 0; i < 10; i++) {
+    //         var memeDiv = $("<div>");
+    //         // var p = $("<p>").text("Rating: " + results[i].rating);
+
+    //         // animalDiv.append(p);
+    //         memeDiv.append(memeImage);
+    //         
+
+
+    //     }
+    // });
 };
 //
 function renderButtons() {
