@@ -18,13 +18,13 @@ function topicInfo() {
         console.log(res);
         var results = res.data;
         for (var i = 0; i < 10; i++) {
-            var animalDiv = $("<div>");
-            var p = $("<p>").text("Rating: " + results[i].rating);
-            var animalImage = $("<img>");
-            animalImage.attr("src", results[i].data.memes[i].url);
-            animalDiv.append(p);
-            animalDiv.append(animalImage);
-            $("#meme-section").prepend(animalDiv);
+            var memelDiv = $("<div>");
+            // var p = $("<p>").text("Rating: " + results[i].rating);
+            var memeImage = $("<img>");
+            memeImage.attr("src", results.data.memes[i].url);
+            // animalDiv.append(p);
+            memeDiv.append(memeImage);
+            $("#meme-section").prepend(memeDiv);
             
             
         }
