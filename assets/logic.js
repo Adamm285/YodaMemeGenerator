@@ -3,7 +3,12 @@
 var topics = ["you will hold my beer", "yoda is so cute", ];
 // 
 function topicInfo() {
+    var cors = "https://cors-anywhere.herokuapp.com/";
+    var queryURL = cors + "https://yodish.p.rapidapi.com/yoda.json?text=" +
+        "babyyoda";
+    var q = $(this).attr("data-topic");
     var settings = {
+
         "async": true,
         "crossDomain": true,
         "url": "https://yodish.p.rapidapi.com/yoda.json?text=" + q,
@@ -122,9 +127,9 @@ $("#clear-all").on("click", clear);
 /*
 TODO:
 - initialize firebase  
-- connect to  yoda translator api without access errors
+- connect to  yoda translator api without access errors *completed - Adam*
 - connect to meme generator api without access errors
-- on click event to take user input
+- on click event to take user input *completed 
 - pass user input through yoda translator
 - populate new phrase from yoda
 - make bank of memes for user to pick from
