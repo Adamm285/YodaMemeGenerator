@@ -1,50 +1,96 @@
 // 
 // 
-var topics = ["baby yoda", "yoda", ];
+var topics = ["you will hold my beer", "yoda is so cute", ];
 // 
 function topicInfo() {
-    event.preventDefault();
-    var cors = "https://cors-anywhere.herokuapp.com/";
-    var queryURL = cors + "https://imgflip.com/memegenerator/" +
-        q;
-    var q = $(this).attr("data-topic");
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://ronreiter-meme-generator.p.rapidapi.com/meme?font=Impact&font_size=50&meme=Condescending-Wonka&top=Top%20text&bottom=Bottom%20text",
-        "method": "GET",
+        "url": "https://yodish.p.rapidapi.com/yoda.json?text=" + q,
+        "method": "POST",
         "headers": {
-            "x-rapidapi-host": "ronreiter-meme-generator.p.rapidapi.com",
-            "x-rapidapi-key": "8cbc079c1dmsh23d13dcb3653048p16f423jsn635842feeaf6"
-        }
+            "x-rapidapi-host": "yodish.p.rapidapi.com",
+            "x-rapidapi-key": "8cbc079c1dmsh23d13dcb3653048p16f423jsn635842feeaf6",
+            "content-type": "application/x-www-form-urlencoded"
+        },
+        "data": {}
     }
-
     $.ajax(settings).done(function (response) {
-        var memeImage = $("<img>");
-        memeImage.attr("src", "data:image/jpeg;" + response);
-        $("#meme-section").prepend(memeImage);
-        console.log(response);
+        $("#trans-section").append(response.contents.translated + " - ");
+        console.log(response.contents.translated);
     });
-    // $.ajax({
-    //     url: queryURL,
-    //     method: "GET"
-    // }).then(function (res) {
-    //     console.log("---------------\nURL: " + queryURL + "\n---------------");
-    //     console.log(q);
-    //     console.log(res);
-    //     var results = res.data;
-    //     for (var i = 0; i < 10; i++) {
-    //         var memeDiv = $("<div>");
-    //         // var p = $("<p>").text("Rating: " + results[i].rating);
-
-    //         // animalDiv.append(p);
-    //         memeDiv.append(memeImage);
-    //         
-
-
-    //     }
-    // });
 };
+
+
+    //     event.preventDefault();
+    //     var settings = {
+    //         "async": true,
+    //         "crossDomain": true,
+    //         "url": "https://ronreiter-meme-generator.p.rapidapi.com/meme?font=Impact&font_size=50&meme=Condescending-Wonka&top=Top%20text&bottom=Bottom%20text",
+    //         "method": "GET",
+    //         "headers": {
+    //             "x-rapidapi-host": "ronreiter-meme-generator.p.rapidapi.com",
+    //             "x-rapidapi-key": "8cbc079c1dmsh23d13dcb3653048p16f423jsn635842feeaf6"
+    //         }
+    //     }
+
+    //     $.ajax(settings).done(function (response) {
+    //         console.log(response);
+    //         var img = $('img').attr("src", "data:image/jpg;base64, " + response)
+    //         $('.meme-table').append(img);
+    //     });
+
+
+// var data = null;
+
+// var xhr = new XMLHttpRequest();
+// // xhr.withCredentials = true;
+
+// // xhr.addEventListener("readystatechange", function () {
+// //     if (this.readyState === this.DONE) {
+// //         console.log(this.responseText);
+// //     }
+// // });
+
+// xhr.open("GET", cors + "ronreiter-meme-generator.p.rapidapi.com/meme?font=Impact&font_size=50&meme=yoda&top=Top%20text&bottom=Bottom%20text");
+// // xhr.setRequestHeader("x-rapidapi-host", "ronreiter-meme-generator.p.rapidapi.com");
+// xhr.setRequestHeader("x-rapidapi-key", "8cbc079c1dmsh23d13dcb3653048p16f423jsn635842feeaf6");
+
+// xhr.send(data);
+// console.log();
+// xhr.onload = function(){
+//     data= JSON.parse(xhr.data);
+//     console.log(data);
+
+// }
+
+
+// $.ajax().done(function (response) {
+//     var memeImage = $("<img>");
+//     memeImage.attr("src", "data:image/jpeg;" + response);
+// $("#meme-section").prepend(memeImage);
+//     console.log(response);
+// });
+// $.ajax({
+//     url: queryURL,
+//     method: "GET"
+// }).then(function (res) {
+//     console.log("---------------\nURL: " + queryURL + "\n---------------");
+//     console.log(q);
+//     console.log(res);
+//     var results = res.data;
+//     for (var i = 0; i < 10; i++) {
+//         var memeDiv = $("<div>");
+//         // var p = $("<p>").text("Rating: " + results[i].rating);
+
+//         // memeDiv.append(p);
+//         memeDiv.append(memeImage);
+//         
+
+
+//     }
+// });
+
 //
 function renderButtons() {
     $("#buttons-view").empty();
