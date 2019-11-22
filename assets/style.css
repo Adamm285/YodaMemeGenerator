@@ -1,0 +1,16 @@
+i {
+    color: brown;
+    font-family: 'Bungee Shade', cursive;
+}
+
+.text-center {
+    color: brown;
+    font-family: 'Bungee Shade', cursive;
+    font-size: 4rem;
+}
+
+body {
+    background: url(https://wallpapercave.com/wp/apRXQtN.jpg);
+    background-repeat: no-repeat;
+    background-size: auto;
+}
