@@ -1,49 +1,88 @@
 // 
 // 
 var topics = ["you will hold my beer", "yoda is so cute", ];
-// 
+// works fine just turned off for testing
+// function topicInfo() {
+//     var cors = "https://cors-anywhere.herokuapp.com/";
+//     var queryURL = cors + "https://yodish.p.rapidapi.com/yoda.json?text=" +
+//         "babyyoda";
+//     var q = $(this).attr("data-topic");
+//     var settings = {
+
+//         "async": true,
+//         "crossDomain": true,
+//         "url": "https://yodish.p.rapidapi.com/yoda.json?text=" + q,
+//         "method": "POST",
+//         "headers": {
+//             "x-rapidapi-host": "yodish.p.rapidapi.com",
+//             "x-rapidapi-key": "8cbc079c1dmsh23d13dcb3653048p16f423jsn635842feeaf6",
+//             "content-type": "application/x-www-form-urlencoded"
+//         },
+//         "data": {}
+//     }
+//     $.ajax(settings).done(function (response) {
+//         $("#trans-section").append(response.contents.translated + " - ");
+//         console.log(response.contents.translated);
+//     });
+// };
 function topicInfo() {
-    var cors = "https://cors-anywhere.herokuapp.com/";
-    var queryURL = cors + "https://yodish.p.rapidapi.com/yoda.json?text=" +
-        "babyyoda";
-    var q = $(this).attr("data-topic");
-    var settings = {
+    fetch("https://ronreiter-meme-generator.p.rapidapi.com/meme?font=Impact&font_size=50&meme=Condescending-Wonka&top=Top%20text&bottom=Bottom%20text", {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "ronreiter-meme-generator.p.rapidapi.com",
+        "x-rapidapi-key": "8cbc079c1dmsh23d13dcb3653048p16f423jsn635842feeaf6",
+      }
+    })
+.then(response => response.body)
+    .then(body => {
+        body.getReader()
+            .read()
+            .then(({
+                value,
+                done
+            }) => {
+                var ascii = new Uint8Array(value);
+                var b64encoded = btoa(String.fromCharCode.apply(null, ascii));
+                console.log(b64encoded)
+                $('#container').html(`<img src="data:image/jpeg;base64, ${b64encoded}"/>`);
 
-        "async": true,
-        "crossDomain": true,
-        "url": "https://yodish.p.rapidapi.com/yoda.json?text=" + q,
-        "method": "POST",
-        "headers": {
-            "x-rapidapi-host": "yodish.p.rapidapi.com",
-            "x-rapidapi-key": "8cbc079c1dmsh23d13dcb3653048p16f423jsn635842feeaf6",
-            "content-type": "application/x-www-form-urlencoded"
-        },
-        "data": {}
-    }
-    $.ajax(settings).done(function (response) {
-        $("#trans-section").append(response.contents.translated + " - ");
-        console.log(response.contents.translated);
-    });
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    })
 };
+// var settings = {
+// 	"async": true,
+// 	"crossDomain": true,
+// 	"url": "https://ronreiter-meme-generator.p.rapidapi.com/meme?font=Impact&font_size=50&meme=Condescending-Wonka&top=Top%20text&bottom=Bottom%20text",
+// 	"method": "GET",
+// 	"headers": {
+// 		"x-rapidapi-host": "ronreiter-meme-generator.p.rapidapi.com",
+// 		"x-rapidapi-key": "8cbc079c1dmsh23d13dcb3653048p16f423jsn635842feeaf6"
+// 	}
+// }
 
+// $.ajax(settings).done(function (response) {
+// 	console.log(response);
+// });
+//     event.preventDefault();
+//     var settings = {
+//         "async": true,
+//         "crossDomain": true,
+//         "url": "https://ronreiter-meme-generator.p.rapidapi.com/meme?font=Impact&font_size=50&meme=Condescending-Wonka&top=Top%20text&bottom=Bottom%20text",
+//         "method": "GET",
+//         "headers": {
+//             "x-rapidapi-host": "ronreiter-meme-generator.p.rapidapi.com",
+//             "x-rapidapi-key": "8cbc079c1dmsh23d13dcb3653048p16f423jsn635842feeaf6"
+//         }
+//     }
 
-    //     event.preventDefault();
-    //     var settings = {
-    //         "async": true,
-    //         "crossDomain": true,
-    //         "url": "https://ronreiter-meme-generator.p.rapidapi.com/meme?font=Impact&font_size=50&meme=Condescending-Wonka&top=Top%20text&bottom=Bottom%20text",
-    //         "method": "GET",
-    //         "headers": {
-    //             "x-rapidapi-host": "ronreiter-meme-generator.p.rapidapi.com",
-    //             "x-rapidapi-key": "8cbc079c1dmsh23d13dcb3653048p16f423jsn635842feeaf6"
-    //         }
-    //     }
-
-    //     $.ajax(settings).done(function (response) {
-    //         console.log(response);
-    //         var img = $('img').attr("src", "data:image/jpg;base64, " + response)
-    //         $('.meme-table').append(img);
-    //     });
+//     $.ajax(settings).done(function (response) {
+//         console.log(response);
+//         var img = $('img').attr("src", "data:image/jpg;base64, " + response)
+//         $('.meme-table').append(img);
+//     });
 
 
 // var data = null;
