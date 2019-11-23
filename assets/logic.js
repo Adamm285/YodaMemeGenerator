@@ -39,7 +39,7 @@ function imgGet() {
         for (let i = 0; i < 5; i++) {
             var newImg = $("<img>");
             $(newImg).attr("src", response.hits[i].largeImageURL);
-            $("#meme-section").append(newImg);
+            $("#trans-section").append(newImg);
         };
     });
 };
@@ -70,12 +70,13 @@ $("#run-search").on("click", function (event) {
     var topic = $("#yoda-term").val();
     topics.push(topic);
     renderButtons();
+    imgGet();
 });
 //
 //$(document).on("click", ".topic-btn", topicInfo, imgGet);
 renderButtons();
 $(document).on("click", ".topic-btn", imgGet);
-imgGet();
+
 
 function clear() {
     $("#meme-section").empty();
