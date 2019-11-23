@@ -34,6 +34,9 @@ $.ajax({
     method: "GET"
 }).then(function(response){
     console.log(response)
+    var newImg = $("<img>");
+    $(newImg).attr("src", response.hits[1].largeImageURL)
+    $("#meme-section").append(newImg) 
 });
 
 //
@@ -55,7 +58,7 @@ $("#run-search").on("click", function (event) {
     renderButtons();
 });
 // 
-$(document).on("click", ".topic-btn", topicInfo);
+//$(document).on("click", ".topic-btn", topicInfo);
 renderButtons();
 
 function clear() {
