@@ -26,7 +26,7 @@ var topics = ["you will hold my beer", "yoda is so cute", ];
 //     });
 // };
 function imgGet() {
-    var topic2 = "#meme-term" 
+    var topic2 = $("#meme-term").val(); 
     var cors = "https://cors-anywhere.herokuapp.com/";
     var queryURL = cors + "https://pixabay.com/api/?key=14379886-8edf494d6e4585af70ecf3230&q="+ topic2 +"&image_type=photo";
     // var y = $(this).attr("meme-data");
@@ -39,7 +39,7 @@ function imgGet() {
         for (let i = 0; i < 5; i++) {
             var newImg = $("<img>");
             $(newImg).attr("src", response.hits[i].largeImageURL);
-            $("#trans-section").append(newImg);
+            $("#trans-section").prepend(newImg);
         };
     });
 };
