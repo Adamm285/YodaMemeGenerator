@@ -26,25 +26,25 @@ var topics = ["you will hold my beer", "yoda is so cute", ];
 //     });
 // };
 //
-function renderButtons() {
-    $("#buttons-view").empty();
-    for (var i = 0; i < topics.length; i++) {
-        var a = $("<button>");
-        a.addClass("topic-btn");
-        a.attr("data-topic", topics[i]);
-        a.text(topics[i]);
-        $("#buttons-view").append(a);
-    }
-}
-//
-//$(document).on("click", ".topic-btn", topicInfo);
-renderButtons();
-$("#run-search").on("click", function (event) {
-    event.preventDefault();
-    var topic = $("#yoda-term").val();
-    topics.push(topic);
-    renderButtons();
-});
+// function renderButtons() {
+//     $("#buttons-view").empty();
+//     for (var i = 0; i < topics.length; i++) {
+//         var a = $("<button>");
+//         a.addClass("topic-btn");
+//         a.attr("data-topic", topics[i]);
+//         a.text(topics[i]);
+//         $("#buttons-view").append(a);
+//     }
+// }
+// //
+// $(document).on("click", ".topic-btn", topicInfo);
+// renderButtons();
+// $("#run-search").on("click", function (event) {
+//     event.preventDefault();
+//     var topic = $("#yoda-term").val();
+//     topics.push(topic);
+//     renderButtons();
+// });
 // end of yoda translator section
 // 
 // 
@@ -54,25 +54,27 @@ $("#run-search").on("click", function (event) {
 var topics2 = ["yoda", "baby yoda"];
 
 function imgGet() {
-    var y = topics2;
-    var cors = "https://cors-anywhere.herokuapp.com/";
-    var queryURL = cors + "https://pixabay.com/api/?key=14379886-8edf494d6e4585af70ecf3230&q=" +
-        y + "&image_type=photo";
+    for (let h = 0; h < 5; h++) {
+        var y = topics2;
+        var cors = "https://cors-anywhere.herokuapp.com/";
+        var queryURL = cors + "https://pixabay.com/api/?key=14379886-8edf494d6e4585af70ecf3230&q=" +
+            y + "&image_type=photo";
 
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
-        console.log(response)
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response)
 
-        for (let i = 0; i < 5; i++) {
-            var newImg = $("<img>");
-            $(newImg).attr("src", response.hits[i].largeImageURL);
-            $("#trans-section").append(newImg);
-            console.log(newImg);
-            
-        };
-    });
+            for (let i = 0; i < 5; i++) {
+                var newImg = $("<img>");
+                $(newImg).attr("src", response.hits[i].largeImageURL);
+                $("#trans-section").append(newImg);
+                console.log(newImg);
+
+            };
+        });
+    }
 };
 // 
 $("#meme-search").on("click", function (event) {
@@ -81,13 +83,14 @@ $("#meme-search").on("click", function (event) {
     topics2.push(topic2);
     imgGet();
 });
-// 
+// this code below is making buttons on the meme section, 
+//  but we need it to make images that are buttons
 function renderImage() {
     $("#meme-section").empty();
     for (var j = 0; j < topics2.length; j++) {
         var b = $("<button>");
         b.addClass("meme-btn");
-        b.attr("meme-topic", topics2[j]);
+        b.attr("src", response.hits[i].largeImageURL);
         b.text(topics2[j]);
         $("#meme-section").append(b);
     }
@@ -120,13 +123,13 @@ TODO:
 TODO: current errors:
 -connection issue with api (key error could by information or api)
 */
-function renderImage(tr) {
-    $("#buttons-view").empty();
-    for (var i = 0; i < topics.length; i++) {
-        var a = $("<button>");
-        a.addClass("topic-btn");
-        a.attr("data-topic", topics[i]);
-        a.text(topics[i]);
-        $("#buttons-view").append(a);
-    }
-}
+// function renderImage(tr) {
+//     $("#buttons-view").empty();
+//     for (var i = 0; i < topics.length; i++) {
+//         var a = $("<button>");
+//         a.addClass("topic-btn");
+//         a.attr("data-topic", topics[i]);
+//         a.text(topics[i]);
+//         $("#buttons-view").append(a);
+//     }
+// }
