@@ -25,8 +25,7 @@ var topics = ["you will hold my beer", "yoda is so cute", ];
 //         console.log(response.contents.translated);
 //     });
 // };
-function topicInfo() {
-    fetch("https://ronreiter-meme-generator.p.rapidapi.com/meme?font=Impact&font_size=50&meme=Condescending-Wonka&top=Top%20text&bottom=Bottom%20text", {
+fetch("https://ronreiter-meme-generator.p.rapidapi.com/meme?font=Impact&font_size=50&meme=Condescending-Wonka&top=Top%20text&bottom=Bottom%20text", {
       "method": "GET",
       "headers": {
         "x-rapidapi-host": "ronreiter-meme-generator.p.rapidapi.com",
@@ -44,14 +43,14 @@ function topicInfo() {
                 var ascii = new Uint8Array(value);
                 var b64encoded = btoa(String.fromCharCode.apply(null, ascii));
                 console.log(b64encoded)
-                $('#container').html(`<img src="data:image/jpeg;base64, ${b64encoded}"/>`);
+                $('#meme-section').html(`<img src="data:image/jpeg;base64, ${b64encoded}"/>`);
 
             })
             .catch(err => {
                 console.log(err);
             });
     })
-};
+
 // var settings = {
 // 	"async": true,
 // 	"crossDomain": true,
