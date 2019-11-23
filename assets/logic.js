@@ -28,7 +28,7 @@ var topics = ["you will hold my beer", "yoda is so cute", ];
 function imgGet() {
     var topic2 = "#meme-term" 
     var cors = "https://cors-anywhere.herokuapp.com/";
-    var queryURL = cors + "https://pixabay.com/api/?key=14379886-8edf494d6e4585af70ecf3230&q=yoda&image_type=photo";
+    var queryURL = cors + "https://pixabay.com/api/?key=14379886-8edf494d6e4585af70ecf3230&q="+ topic2 +"&image_type=photo";
     // var y = $(this).attr("meme-data");
     $.ajax({
         url: queryURL,
