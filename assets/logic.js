@@ -71,7 +71,8 @@ function imgGet() {
             $("#trans-section").prepend(newImg);
         };
         $(".userMeme").on("click", function() {
-            
+            $(this).appendTo("#meme-section");
+            $("#trans-section").empty();
         });
     });
 };
