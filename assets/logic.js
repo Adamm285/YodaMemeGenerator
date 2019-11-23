@@ -25,12 +25,41 @@ var topics = ["you will hold my beer", "yoda is so cute", ];
 //         console.log(response.contents.translated);
 //     });
 // };
+//
+function renderButtons() {
+    $("#buttons-view").empty();
+    for (var i = 0; i < topics.length; i++) {
+        var a = $("<button>");
+        a.addClass("topic-btn");
+        a.attr("data-topic", topics[i]);
+        a.text(topics[i]);
+        $("#buttons-view").append(a);
+    }
+}
+//
+//$(document).on("click", ".topic-btn", topicInfo);
+renderButtons();
+$("#run-search").on("click", function (event) {
+    event.preventDefault();
+    var topic = $("#yoda-term").val();
+    topics.push(topic);
+    renderButtons();
+});
+// end of yoda translator section
+// 
+// 
+// 
+// 
+// Meme collection section
+var topics2 = ["yoda", "baby yoda"];
+
 function imgGet() {
     $("#trans-section").empty()
     var topic2 = $("#meme-term").val(); 
     var cors = "https://cors-anywhere.herokuapp.com/";
-    var queryURL = cors + "https://pixabay.com/api/?key=14379886-8edf494d6e4585af70ecf3230&q="+ topic2 +"&image_type=photo";
-    // var y = $(this).attr("meme-data");
+    var queryURL = cors + "https://pixabay.com/api/?key=14379886-8edf494d6e4585af70ecf3230&q=" +
+        y + "&image_type=photo";
+
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -47,27 +76,25 @@ function imgGet() {
         });
     });
 };
+// 
 $("#meme-search").on("click", function (event) {
     event.preventDefault();
     var topic2 = $("#meme-term").val();
-    topics.push(topic2);
-    // renderButtons();
+    topics2.push(topic2);
     imgGet();
 });
-
-
-
-//
-function renderButtons() {
-    $("#buttons-view").empty();
-    for (var i = 0; i < topics.length; i++) {
-        var a = $("<button>");
-        a.addClass("topic-btn");
-        a.attr("data-topic", topics[i]);
-        a.text(topics[i]);
-        $("#buttons-view").append(a);
+// 
+function renderImage() {
+    $("#meme-section").empty();
+    for (var j = 0; j < topics2.length; j++) {
+        var b = $("<button>");
+        b.addClass("meme-btn");
+        b.attr("meme-topic", topics2[j]);
+        b.text(topics2[j]);
+        $("#meme-section").append(b);
     }
 }
+renderImage();
 // 
 $("#run-search").on("click", function (event) {
     event.preventDefault();
@@ -80,7 +107,6 @@ $("#run-search").on("click", function (event) {
 //$(document).on("click", ".topic-btn", topicInfo, imgGet);
 renderButtons();
 $(document).on("click", ".topic-btn", imgGet);
-
 
 function clear() {
     $("#meme-section").empty();
