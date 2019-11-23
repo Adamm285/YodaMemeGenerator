@@ -14,3 +14,8 @@ body {
     background: url(https://wallpapercave.com/wp/apRXQtN.jpg);
     background-repeat: repeat;
 }
+
+img {
+    height: 250px;
+    width: 250px;
+}
