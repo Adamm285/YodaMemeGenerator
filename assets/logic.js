@@ -32,11 +32,15 @@ var queryURL = "https://pixabay.com/api/?key=14379886-8edf494d6e4585af70ecf3230"
 $.ajax({
     url: queryURL,
     method: "GET"
-}).then(function(response){
+}).then(function (response) {
     console.log(response)
-    var newImg = $("<img>");
-    $(newImg).attr("src", response.hits[1].largeImageURL)
-    $("#meme-section").append(newImg) 
+
+    for (let i = 0; i < 5; i++) {
+        var newImg = $("<img>");
+        $(newImg).attr("src", response.hits[1].largeImageURL);
+        $("#meme-section").append(newImg);
+    }
+
 });
 
 //
