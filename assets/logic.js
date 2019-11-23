@@ -38,10 +38,13 @@ function imgGet() {
         console.log(response)
 
         for (let i = 0; i < 5; i++) {
-            var newImg = $("<img>");
+            var newImg = $("<img>").addClass("userMeme");
             $(newImg).attr("src", response.hits[i].largeImageURL);
             $("#trans-section").prepend(newImg);
         };
+        $(".userMeme").on("click", function() {
+            $(this).
+        });
     });
 };
 $("#meme-search").on("click", function (event) {
