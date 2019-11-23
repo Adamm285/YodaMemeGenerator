@@ -38,7 +38,7 @@ function imgGet() {
 
         for (let i = 0; i < 5; i++) {
             var newImg = $("<img>");
-            $(newImg).attr("src", response.hits[2].largeImageURL);
+            $(newImg).attr("src", response.hits[i].largeImageURL);
             $("#meme-section").append(newImg);
         };
     });
