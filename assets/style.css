@@ -13,5 +13,6 @@ i {
 body {
     background: url(https://wallpapercave.com/wp/apRXQtN.jpg);
     background-repeat: no-repeat;
-    background-size: auto;
+    background-size: cover;
+  
 }
