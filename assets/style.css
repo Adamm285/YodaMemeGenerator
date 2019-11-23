@@ -4,6 +4,12 @@ i {
     font-family: 'Bungee Shade', cursive;
 }
 
+label {
+    font-family: 'Bungee Hairline', cursive;
+    color: rgb(13, 156, 56);
+    font-size: large;
+}
+
 .text-center {
     color: brown;
     font-family: 'Bungee Shade', cursive;
