@@ -67,8 +67,10 @@ function imgGet() {
 
         for (let i = 0; i < 5; i++) {
             var newImg = $("<img>");
-            $(newImg).attr("src", response.hits.largeImageURL);
+            $(newImg).attr("src", response.hits[i].largeImageURL);
             $("#trans-section").append(newImg);
+            console.log(newImg);
+            
         };
     });
 };
