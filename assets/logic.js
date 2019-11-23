@@ -57,9 +57,8 @@ function imgGet() {
     $("#trans-section").empty()
     var topic2 = $("#meme-term").val(); 
     var cors = "https://cors-anywhere.herokuapp.com/";
-    var queryURL = cors + "https://pixabay.com/api/?key=14379886-8edf494d6e4585af70ecf3230&q=" +
-        y + "&image_type=photo";
-
+    var queryURL = cors + "https://pixabay.com/api/?key=14379886-8edf494d6e4585af70ecf3230&q="+ topic2 +"&image_type=photo";
+    // var y = $(this).attr("meme-data");
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -67,10 +66,13 @@ function imgGet() {
         console.log(response)
 
         for (let i = 0; i < 5; i++) {
-            var newImg = $("<img>");
+            var newImg = $("<img>").addClass("userMeme");
             $(newImg).attr("src", response.hits[i].largeImageURL);
             $("#trans-section").prepend(newImg);
         };
+        $(".userMeme").on("click", function() {
+            
+        });
     });
 };
 // 
