@@ -25,19 +25,33 @@ var topics = ["you will hold my beer", "yoda is so cute", ];
 //         console.log(response.contents.translated);
 //     });
 // };
+function imgGet() {
+    var topic2 = "#meme-term" 
+    var cors = "https://cors-anywhere.herokuapp.com/";
+    var queryURL = cors + "https://pixabay.com/api/?key=14379886-8edf494d6e4585af70ecf3230&q=yoda&image_type=photo";
+    // var y = $(this).attr("meme-data");
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+        console.log(response)
 
-
-var queryURL = "https://pixabay.com/api/?key=14379886-8edf494d6e4585af70ecf3230"
-
-$.ajax({
-    url: queryURL,
-    method: "GET"
-}).then(function(response){
-    console.log(response)
-    var newImg = $("<img>");
-    $(newImg).attr("src", response.hits[1].largeImageURL)
-    $("#meme-section").append(newImg) 
+        for (let i = 0; i < 5; i++) {
+            var newImg = $("<img>");
+            $(newImg).attr("src", response.hits[i].largeImageURL);
+            $("#meme-section").append(newImg);
+        };
+    });
+};
+$("#meme-search").on("click", function (event) {
+    event.preventDefault();
+    var topic2 = $("#meme-term").val();
+    topics.push(topic2);
+    // renderButtons();
+    imgGet();
 });
+
+
 
 //
 function renderButtons() {
@@ -53,16 +67,19 @@ function renderButtons() {
 // 
 $("#run-search").on("click", function (event) {
     event.preventDefault();
-    var topic = $("#search-term").val();
+    var topic = $("#yoda-term").val();
     topics.push(topic);
     renderButtons();
 });
-// 
-//$(document).on("click", ".topic-btn", topicInfo);
+//
+//$(document).on("click", ".topic-btn", topicInfo, imgGet);
 renderButtons();
+$(document).on("click", ".topic-btn", imgGet);
+imgGet();
 
 function clear() {
     $("#meme-section").empty();
+    $("#trans-section").empty();
 }
 // 
 $("#clear-all").on("click", clear);
@@ -83,3 +100,13 @@ TODO:
 TODO: current errors:
 -connection issue with api (key error could by information or api)
 */
+function renderImage(tr) {
+    $("#buttons-view").empty();
+    for (var i = 0; i < topics.length; i++) {
+        var a = $("<button>");
+        a.addClass("topic-btn");
+        a.attr("data-topic", topics[i]);
+        a.text(topics[i]);
+        $("#buttons-view").append(a);
+    }
+}
