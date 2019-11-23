@@ -25,114 +25,16 @@ var topics = ["you will hold my beer", "yoda is so cute", ];
 //         console.log(response.contents.translated);
 //     });
 // };
-fetch("https://ronreiter-meme-generator.p.rapidapi.com/meme?font=Impact&font_size=50&meme=Condescending-Wonka&top=Top%20text&bottom=Bottom%20text", {
-      "method": "GET",
-      "headers": {
-        "x-rapidapi-host": "ronreiter-meme-generator.p.rapidapi.com",
-        "x-rapidapi-key": "8cbc079c1dmsh23d13dcb3653048p16f423jsn635842feeaf6",
-      }
-    })
-.then(response => response.body)
-    .then(body => {
-        body.getReader()
-            .read()
-            .then(({
-                value,
-                done
-            }) => {
-                var ascii = new Uint8Array(value);
-                var b64encoded = btoa(String.fromCharCode.apply(null, ascii));
-                console.log(b64encoded)
-                $('#meme-section').html(`<img src="data:image/jpeg;base64, ${b64encoded}"/>`);
-
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    })
-
-// var settings = {
-// 	"async": true,
-// 	"crossDomain": true,
-// 	"url": "https://ronreiter-meme-generator.p.rapidapi.com/meme?font=Impact&font_size=50&meme=Condescending-Wonka&top=Top%20text&bottom=Bottom%20text",
-// 	"method": "GET",
-// 	"headers": {
-// 		"x-rapidapi-host": "ronreiter-meme-generator.p.rapidapi.com",
-// 		"x-rapidapi-key": "8cbc079c1dmsh23d13dcb3653048p16f423jsn635842feeaf6"
-// 	}
-// }
-
-// $.ajax(settings).done(function (response) {
-// 	console.log(response);
-// });
-//     event.preventDefault();
-//     var settings = {
-//         "async": true,
-//         "crossDomain": true,
-//         "url": "https://ronreiter-meme-generator.p.rapidapi.com/meme?font=Impact&font_size=50&meme=Condescending-Wonka&top=Top%20text&bottom=Bottom%20text",
-//         "method": "GET",
-//         "headers": {
-//             "x-rapidapi-host": "ronreiter-meme-generator.p.rapidapi.com",
-//             "x-rapidapi-key": "8cbc079c1dmsh23d13dcb3653048p16f423jsn635842feeaf6"
-//         }
-//     }
-
-//     $.ajax(settings).done(function (response) {
-//         console.log(response);
-//         var img = $('img').attr("src", "data:image/jpg;base64, " + response)
-//         $('.meme-table').append(img);
-//     });
 
 
-// var data = null;
+var queryURL = "https://pixabay.com/api/?key=14379886-8edf494d6e4585af70ecf3230"
 
-// var xhr = new XMLHttpRequest();
-// // xhr.withCredentials = true;
-
-// // xhr.addEventListener("readystatechange", function () {
-// //     if (this.readyState === this.DONE) {
-// //         console.log(this.responseText);
-// //     }
-// // });
-
-// xhr.open("GET", cors + "ronreiter-meme-generator.p.rapidapi.com/meme?font=Impact&font_size=50&meme=yoda&top=Top%20text&bottom=Bottom%20text");
-// // xhr.setRequestHeader("x-rapidapi-host", "ronreiter-meme-generator.p.rapidapi.com");
-// xhr.setRequestHeader("x-rapidapi-key", "8cbc079c1dmsh23d13dcb3653048p16f423jsn635842feeaf6");
-
-// xhr.send(data);
-// console.log();
-// xhr.onload = function(){
-//     data= JSON.parse(xhr.data);
-//     console.log(data);
-
-// }
-
-
-// $.ajax().done(function (response) {
-//     var memeImage = $("<img>");
-//     memeImage.attr("src", "data:image/jpeg;" + response);
-// $("#meme-section").prepend(memeImage);
-//     console.log(response);
-// });
-// $.ajax({
-//     url: queryURL,
-//     method: "GET"
-// }).then(function (res) {
-//     console.log("---------------\nURL: " + queryURL + "\n---------------");
-//     console.log(q);
-//     console.log(res);
-//     var results = res.data;
-//     for (var i = 0; i < 10; i++) {
-//         var memeDiv = $("<div>");
-//         // var p = $("<p>").text("Rating: " + results[i].rating);
-
-//         // memeDiv.append(p);
-//         memeDiv.append(memeImage);
-//         
-
-
-//     }
-// });
+$.ajax({
+    url: queryURL,
+    method: "GET"
+}).then(function(response){
+    console.log(response)
+});
 
 //
 function renderButtons() {
