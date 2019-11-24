@@ -26,25 +26,25 @@ var topics = ["you will hold my beer", "yoda is so cute", ];
 //     });
 // };
 //
-// function renderButtons() {
-//     $("#buttons-view").empty();
-//     for (var i = 0; i < topics.length; i++) {
-//         var a = $("<button>");
-//         a.addClass("topic-btn");
-//         a.attr("data-topic", topics[i]);
-//         a.text(topics[i]);
-//         $("#buttons-view").append(a);
-//     }
-// }
-// //
-// $(document).on("click", ".topic-btn", topicInfo);
-// renderButtons();
-// $("#run-search").on("click", function (event) {
-//     event.preventDefault();
-//     var topic = $("#yoda-term").val();
-//     topics.push(topic);
-//     renderButtons();
-// });
+function renderButtons() {
+    $("#buttons-view").empty();
+    for (var i = 0; i < topics.length; i++) {
+        var a = $("<button>");
+        a.addClass("topic-btn");
+        a.attr("data-topic", topics[i]);
+        a.text(topics[i]);
+        $("#buttons-view").append(a);
+    }
+}
+//
+//$(document).on("click", ".topic-btn", topicInfo);
+renderButtons();
+$("#run-search").on("click", function (event) {
+    event.preventDefault();
+    var topic = $("#yoda-term").val();
+    topics.push(topic);
+    renderButtons();
+});
 // end of yoda translator section
 // 
 // 
@@ -54,29 +54,6 @@ var topics = ["you will hold my beer", "yoda is so cute", ];
 var topics2 = ["yoda", "baby yoda"];
 
 function imgGet() {
-<<<<<<< HEAD
-    for (let h = 0; h < 5; h++) {
-        var y = topics2;
-        var cors = "https://cors-anywhere.herokuapp.com/";
-        var queryURL = cors + "https://pixabay.com/api/?key=14379886-8edf494d6e4585af70ecf3230&q=" +
-            y + "&image_type=photo";
-
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-            console.log(response)
-
-            for (let i = 0; i < 5; i++) {
-                var newImg = $("<img>");
-                $(newImg).attr("src", response.hits[i].largeImageURL);
-                $("#trans-section").append(newImg);
-                console.log(newImg);
-
-            };
-        });
-    }
-=======
     $("#trans-section").empty()
     var topic2 = $("#meme-term").val();
     var cors = "https://cors-anywhere.herokuapp.com/";
@@ -99,9 +76,9 @@ function imgGet() {
             $("#trans-section").empty();
         });
     });
->>>>>>> b22b679e8b0cde6a398d7f3c00093ce30b74b3e9
 };
 
+/*
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -148,6 +125,7 @@ onload = function () {
     const saltImage = drawSalt('http://res.cloudinary.com/dlwnmz6lr/image/upload/v1526005050/chadwick-boseman-inspired-workout-program-wide_phczey.webp', canvas, ctx);
 };
 
+*/
 
 // 
 $("#meme-search").on("click", function (event) {
@@ -156,14 +134,13 @@ $("#meme-search").on("click", function (event) {
     topics2.push(topic2);
     imgGet();
 });
-// this code below is making buttons on the meme section, 
-//  but we need it to make images that are buttons
+// 
 function renderImage() {
     $("#meme-section").empty();
     for (var j = 0; j < topics2.length; j++) {
         var b = $("<button>");
         b.addClass("meme-btn");
-        b.attr("src", response.hits[i].largeImageURL);
+        b.attr("meme-topic", topics2[j]);
         b.text(topics2[j]);
         $("#meme-section").append(b);
     }
@@ -205,13 +182,13 @@ TODO:
 TODO: current errors:
 -connection issue with api (key error could by information or api)
 */
-// function renderImage(tr) {
-//     $("#buttons-view").empty();
-//     for (var i = 0; i < topics.length; i++) {
-//         var a = $("<button>");
-//         a.addClass("topic-btn");
-//         a.attr("data-topic", topics[i]);
-//         a.text(topics[i]);
-//         $("#buttons-view").append(a);
-//     }
-// }
+function renderImage(tr) {
+    $("#buttons-view").empty();
+    for (var i = 0; i < topics.length; i++) {
+        var a = $("<button>");
+        a.addClass("topic-btn");
+        a.attr("data-topic", topics[i]);
+        a.text(topics[i]);
+        $("#buttons-view").append(a);
+    }
+}
