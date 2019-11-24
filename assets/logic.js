@@ -65,6 +65,8 @@ function imgGet() {
     }).then(function (response) {
         console.log(response)
 
+   
+
         for (let i = 0; i < 5; i++) {
             var newImg = $("<img>").addClass("userMeme");
             $(newImg).attr("src", response.hits[i].largeImageURL);
@@ -74,9 +76,22 @@ function imgGet() {
             $(this).appendTo("#meme-section");
             $(this).addClass("selectedImg")
             $("#trans-section").empty();
+            function makeMeme() {
+                var canvas = $("<canvas>");
+                context = canvas.getContext('2d')
+                $(canvas).append(".selectedImg")
+    
+            };
+            makeMeme();
+            console.log(b)
         });
     });
 };
+
+
+
+
+
 
 /*
 function getRandomInt(min, max) {
