@@ -76,14 +76,13 @@ function imgGet() {
             $(this).appendTo("#meme-section");
             $(this).addClass("selectedImg")
             $("#trans-section").empty();
-            function makeMeme() {
-                var canvas = $("<canvas>");
-                context = canvas.getContext('2d')
-                $(canvas).append(".selectedImg")
-    
+            function makeMeme () {
+                var canvas = $("<canvas>").addClass("imgCanvas");
+                var context = $(".imgCanvas").get('2d')
+                console.log(".imgCanvas")
+                console.log(context)
             };
             makeMeme();
-            console.log(b)
         });
     });
 };
