@@ -54,6 +54,7 @@ var topics = ["you will hold my beer", "yoda is so cute", ];
 var topics2 = ["yoda", "baby yoda"];
 
 function imgGet() {
+<<<<<<< HEAD
     for (let h = 0; h < 5; h++) {
         var y = topics2;
         var cors = "https://cors-anywhere.herokuapp.com/";
@@ -75,6 +76,29 @@ function imgGet() {
             };
         });
     }
+=======
+    $("#trans-section").empty()
+    var topic2 = $("#meme-term").val(); 
+    var cors = "https://cors-anywhere.herokuapp.com/";
+    var queryURL = cors + "https://pixabay.com/api/?key=14379886-8edf494d6e4585af70ecf3230&q="+ topic2 +"&image_type=photo";
+    // var y = $(this).attr("meme-data");
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+        console.log(response)
+
+        for (let i = 0; i < 5; i++) {
+            var newImg = $("<img>").addClass("userMeme");
+            $(newImg).attr("src", response.hits[i].largeImageURL);
+            $("#trans-section").prepend(newImg);
+        };
+        $(".userMeme").on("click", function() {
+            $(this).appendTo("#meme-section");
+            $("#trans-section").empty();
+        });
+    });
+>>>>>>> b22b679e8b0cde6a398d7f3c00093ce30b74b3e9
 };
 // 
 $("#meme-search").on("click", function (event) {
@@ -97,9 +121,18 @@ function renderImage() {
 }
 renderImage();
 // 
-$(document).on("click", ".meme-btn", imgGet);
-imgGet();
-// 
+$("#run-search").on("click", function (event) {
+    event.preventDefault();
+    var topic = $("#yoda-term").val();
+    topics.push(topic);
+    renderButtons();
+    imgGet();
+});
+//
+//$(document).on("click", ".topic-btn", topicInfo, imgGet);
+renderButtons();
+$(document).on("click", ".topic-btn", imgGet);
+
 function clear() {
     $("#meme-section").empty();
     $("#trans-section").empty();

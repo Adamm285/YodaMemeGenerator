@@ -4,6 +4,12 @@ i {
     font-family: 'Bungee Shade', cursive;
 }
 
+label {
+    font-family: 'Bungee Hairline', cursive;
+    color: rgb(13, 156, 56);
+    font-size: large;
+}
+
 .text-center {
     color: brown;
     font-family: 'Bungee Shade', cursive;
@@ -11,10 +17,15 @@ i {
 }
 
 body {
+    background: url(https://wallpapercave.com/wp/apRXQtN.jpg);
+    background-repeat: repeat;
+}
+
+img {
+    height: 250px;
+    width: 250px;
     /* background: url(https://wallpapercave.com/wp/apRXQtN.jpg);
     z-index: 3; */
-    
-  
 }
 
 
