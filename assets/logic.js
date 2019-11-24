@@ -63,9 +63,7 @@ function imgGet() {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        console.log(response)
-
-   
+        console.log(response);
 
         for (let i = 0; i < 5; i++) {
             var newImg = $("<img>").addClass("userMeme");
@@ -74,11 +72,19 @@ function imgGet() {
         };
         $(".userMeme").on("click", function () {
             $(this).appendTo("#meme-section");
-            $(this).addClass("selectedImg")
+            $(this).addClass("selectedImg");
             $("#trans-section").empty();
             function makeMeme () {
                 var canvas = $("<canvas>").addClass("imgCanvas");
-                var context = $(".imgCanvas").get('2d')
+                var context = $(".imgCanvas").get('2d');
+                var imgPath = newImg;
+                var imgObj = new Image();
+                imgObj.src = imgPath
+                var x = 0;
+                var y = 0;
+                imgObj.onload = function () {
+                    context.drawImage(imgObj, x, y);
+                }
                 console.log(".imgCanvas")
                 console.log(context)
             };
