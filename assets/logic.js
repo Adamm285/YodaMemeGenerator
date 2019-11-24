@@ -78,6 +78,7 @@ function imgGet() {
     });
 };
 
+/*
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -124,6 +125,7 @@ onload = function () {
     const saltImage = drawSalt('http://res.cloudinary.com/dlwnmz6lr/image/upload/v1526005050/chadwick-boseman-inspired-workout-program-wide_phczey.webp', canvas, ctx);
 };
 
+*/
 
 // 
 $("#meme-search").on("click", function (event) {
