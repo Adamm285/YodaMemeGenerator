@@ -78,9 +78,9 @@ function imgGet() {
     }
 =======
     $("#trans-section").empty()
-    var topic2 = $("#meme-term").val(); 
+    var topic2 = $("#meme-term").val();
     var cors = "https://cors-anywhere.herokuapp.com/";
-    var queryURL = cors + "https://pixabay.com/api/?key=14379886-8edf494d6e4585af70ecf3230&q="+ topic2 +"&image_type=photo";
+    var queryURL = cors + "https://pixabay.com/api/?key=14379886-8edf494d6e4585af70ecf3230&q=" + topic2 + "&image_type=photo";
     // var y = $(this).attr("meme-data");
     $.ajax({
         url: queryURL,
@@ -93,13 +93,62 @@ function imgGet() {
             $(newImg).attr("src", response.hits[i].largeImageURL);
             $("#trans-section").prepend(newImg);
         };
-        $(".userMeme").on("click", function() {
+        $(".userMeme").on("click", function () {
             $(this).appendTo("#meme-section");
+            $(this).addClass("selectedImg")
             $("#trans-section").empty();
         });
     });
 >>>>>>> b22b679e8b0cde6a398d7f3c00093ce30b74b3e9
 };
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+}
+
+function drawBackgroundImage(canvas, ctx) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const img = $(".selectedImg");
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+}
+
+function getRandomImageSize(min, max, width, height) {
+    const ratio = width / height; // Used for aspect ratio
+    width = getRandomInt(min, max);
+    height = width / ratio;
+    return {
+        width,
+        height
+    };
+}
+
+function drawSalt(src, canvas, ctx) {
+    // Create an image object. (Not part of the dom)
+    const image = new Image();
+    image.src = src;
+
+    // After the image has loaded, draw it to the canvas
+    image.onload = function () {
+        for (let i = 0; i < 8; i++) {
+            const randomX = getRandomInt(10, canvas.width / 2);
+            const randomY = getRandomInt(canvas.height - 300, canvas.height);
+            const dimensions = getRandomImageSize(20, 100, image.width, image.height);
+            ctx.drawImage(image, randomX, randomY, dimensions.width, dimensions.height);
+        }
+    }
+    return image;
+}
+
+onload = function () {
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    drawBackgroundImage(canvas, ctx);
+    const saltImage = drawSalt('http://res.cloudinary.com/dlwnmz6lr/image/upload/v1526005050/chadwick-boseman-inspired-workout-program-wide_phczey.webp', canvas, ctx);
+};
+
+
 // 
 $("#meme-search").on("click", function (event) {
     event.preventDefault();
