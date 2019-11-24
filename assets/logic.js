@@ -84,11 +84,10 @@ function imgGet() {
             function makeMeme () {
                 
                 //creates canvas and sets 2d property
-                var canvas = $("<canvas>").addClass("imgCanvas");
-                var context = $(".imgCanvas").get('2d');
+                var canvas = $("<canvas>");
+                var context = $(canvas).get('2d');
 
                 //gives image path and makes new img for canvas
-                //TODO: fix image path so it sources the user image without an error
                 var imgPath = $('.selectedImg').attr('src');
                 var imgObj = new Image();
                 
@@ -100,9 +99,10 @@ function imgGet() {
                 var y = 0;
 
                 //function to draw the image onto the canvas
+                //TODO: fix draw image property error
                 imgObj.onload = function () {
                     context.drawImage(imgObj, x, y);
-                }
+                };
                 console.log(".imgCanvas")
                 console.log(context)
             };
