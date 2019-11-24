@@ -75,6 +75,7 @@ function imgGet() {
 
         //on click to select the user image
         $(".userMeme").on("click", function () {
+            console.log(this)
             $(this).appendTo("#meme-section");
             $(this).addClass("selectedImg");
             $("#trans-section").empty();
@@ -88,7 +89,7 @@ function imgGet() {
 
                 //gives image path and makes new img for canvas
                 //TODO: fix image path so it sources the user image without an error
-                var imgPath = response.largeImageURL;
+                var imgPath = $('.selectedImg').attr('src');
                 var imgObj = new Image();
                 
                 //making the new image source the chosen image path
