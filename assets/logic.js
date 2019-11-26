@@ -58,25 +58,63 @@ function imgGet() {
     var topic2 = $("#meme-term").val();
     var cors = "https://cors-anywhere.herokuapp.com/";
     var queryURL = cors + "https://pixabay.com/api/?key=14379886-8edf494d6e4585af70ecf3230&q=" + topic2 + "&image_type=photo";
+
     // var y = $(this).attr("meme-data");
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        console.log(response)
+        console.log(response);
 
+        //for loop to generate images from api
         for (let i = 0; i < 5; i++) {
             var newImg = $("<img>").addClass("userMeme");
             $(newImg).attr("src", response.hits[i].largeImageURL);
             $("#trans-section").prepend(newImg);
         };
+
+        //on click to select the user image
         $(".userMeme").on("click", function () {
+            console.log(this)
             $(this).appendTo("#meme-section");
-            $(this).addClass("selectedImg")
+            $(this).addClass("selectedImg");
             $("#trans-section").empty();
+
+            //function to put selected image into a canvas
+            function makeMeme () {
+                
+                //creates canvas and sets 2d property
+                var canvas = $("<canvas>");
+                var context = $(canvas).get('2d');
+
+                //gives image path and makes new img for canvas
+                var imgPath = $('.selectedImg').attr('src');
+                var imgObj = new Image();
+                
+                //making the new image source the chosen image path
+                imgObj.src = imgPath
+                
+                //vars for the x an y axis
+                var x = 0;
+                var y = 0;
+
+                //function to draw the image onto the canvas
+                //TODO: fix draw image property error
+                imgObj.onload = function () {
+                    context.drawImage(imgObj, x, y);
+                };
+                console.log(".imgCanvas")
+                console.log(context)
+            };
+            makeMeme();
         });
     });
 };
+
+
+
+
+
 
 /*
 function getRandomInt(min, max) {
