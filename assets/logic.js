@@ -76,9 +76,9 @@ function imgGet() {
         //on click to select the user image
         $(".userMeme").on("click", function () {
             console.log(this)
-            $(this).appendTo("#meme-section");
+            $(this).appendTo("#trans-section");
             $(this).addClass("selectedImg");
-            $("#trans-section").empty();
+            $("#meme-section").empty();
 
             //function to put selected image into a canvas
             function makeMeme () {
