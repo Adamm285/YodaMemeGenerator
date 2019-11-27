@@ -8,7 +8,7 @@ label {
     font-family: 'Bungee Hairline', cursive;
     color: rgb(13, 156, 56);
 	font-size: large;
-	font-weight: 30px;
+	font-weight: bolder;
 }
 
 .text-center {
@@ -42,7 +42,9 @@ img {
 }
 
 .topic-btn {
-border-block-color: red;
+	color: rgb(13, 156, 56);
+	background-color: ghostwhite;
+    font-family: 'Bungee Shade', cursive;
 }
 
 @import "susy";
