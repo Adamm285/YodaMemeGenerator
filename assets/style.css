@@ -7,7 +7,8 @@ i {
 label {
     font-family: 'Bungee Hairline', cursive;
     color: rgb(13, 156, 56);
-    font-size: large;
+	font-size: large;
+	font-weight: 30px;
 }
 
 .text-center {
@@ -28,12 +29,24 @@ img {
     z-index: 3; */
 }
 
-
-.instructions {
-	font-weight: bolder;
-	text-decoration: underline;
+.card-header {
+	background-color: snow;
 }
 
+.card-body {
+	background-color: lightgray;
+}
+
+.btn-default {
+	background-color: ghostwhite;
+}
+
+.topic-btn {
+border-block-color: red;
+}
+
+"susy";
+"compass/reset";
 
 
 .stars, .twinkling, .clouds {
@@ -62,11 +75,11 @@ img {
 }
 
 @keyframes move-twink-back {
-	from {background-position:0 0;}
+	from {background-position:0 3;}
 	to {background-position:-10000px 5000px;}
 }
 
 @keyframes move-clouds-back {
-	from {background-position:0 0;}
+	from {background-position:0 5;}
 	to {background-position:10000px 0;}
 }
