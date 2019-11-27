@@ -47,6 +47,11 @@ img {
     font-family: 'Bungee Shade', cursive;
 }
 
+#row {
+	margin-right: -1px;
+	margin-left: -1px;
+}
+
 "susy";
 "compass/reset";
 

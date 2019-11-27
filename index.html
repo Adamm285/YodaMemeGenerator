@@ -128,18 +128,36 @@
                             <i class="meme-table"> Results</i></strong>
                     </div>
 
-                    <canvas id="myCanvas" class="card-body" width="480px" height="384"></canvas>
+                    <div class="row card-body" id="row">
+                        <div class="col-md-6">
+                            <canvas id="myCanvas" width="480px" height="480"></canvas>
+                        </div>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-3">
+                            <br>
+                            <label for="search" class="instructions">Enter Top Text Here:</label>
+                            <input type="text" class="form-control" id="top-text">
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="search" class="instructions">Enter Bottom Text Here:</label>
+                                    <input type="text" class="form-control" id="bottom-text">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
+
+
         </div>
 
 
-    </div>
-
-
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/logic.js"></script>
+        <script src="https://code.jquery.com/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js">
+        </script>
+        <script src="assets/logic.js"></script>
 </body>
 
 </html>
