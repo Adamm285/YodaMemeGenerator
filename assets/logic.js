@@ -76,36 +76,29 @@ function imgGet() {
         //on click to select the user image
         $(".userMeme").on("click", function () {
             console.log(this)
-            $(this).appendTo("#trans-section");
             $(this).addClass("selectedImg");
-            $("#meme-section").empty();
 
             //function to put selected image into a canvas
-            function makeMeme () {
-                
-                //creates canvas and sets 2d property
-                var canvas = $("<canvas>");
-                var context = $(canvas).get('2d');
-                
-                //gives image path and makes new img for canvas
-                var imgPath = $('.selectedImg').attr('src');
-                var imgObj = new Image();
-                
-                //making the new image source the chosen image path
-                imgObj.src = imgPath
-                
-                //vars for the x an y axis
-                var x = 0;
-                var y = 0;
+            function makeMeme() {
 
-                //function to draw the image onto the canvas
-                //TODO: fix draw image property error
-                imgObj.onload = function () {
-                    context.drawImage(imgObj, x, y);
-                };
-                console.log(context)
+                var canvas = document.getElementById('myCanvas'),
+                    context = canvas.getContext('2d');
+                make_base();
+
+                function make_base() {
+                    base_image = new Image();
+                    base_image.src = $('.selectedImg').attr('src');
+                    base_image.onload = function () {
+                        context.drawImage(base_image, 0, 0, 480, 384);
+                    }
+                }
+
+                $("#trans-section").append();
             };
+
             makeMeme();
+
+            $("#meme-section").empty();
         });
     });
 };
