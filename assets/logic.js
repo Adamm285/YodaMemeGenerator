@@ -93,52 +93,6 @@ function imgGet() {
                     }
                 }
 
-                //var canvas = document.getElementById("myCanvas");
-                //var ctx = canvas.getContext("2d");
-                //ctx.moveTo(0, 0);
-                //ctx.lineTo(200, 100);
-                //ctx.stroke();
-                //console.log(ctx)
-                //creates canvas and sets 2d property
-                //TODO: fix context so it is not undefined
-
-                //var canvas = $("<canvas>");
-                //console.log(canvas);
-                //var context = canvas.getContext('2d');
-                //console.log(context)
-                //gives image path and makes new img for canvas
-                //var imgPath = $('.selectedImg').attr('src');
-                //console.log(imgPath)
-
-                // img.src = $('.selectedImg').attr('src');
-
-                //making the new image source the chosen image path
-                // imgObj.src = imgPath;
-
-                // //vars for the x an y axis
-                // var x = 0;
-                // var y = 0;
-                // var canvasWidth = 300
-                // var canvasHeight = 150
-
-                // //function to draw the image onto the canvas
-                // imgObj.onload = function () {
-                //     context.drawImage(imgObj.src, x, y, canvasWidth, canvasHeight);
-                // };
-
-                // try this for me
-                //var v = $('.selectedImg');
-                //var c = document.getElementById("myCanvas");
-                //var ctx = c.get("2d");
-
-
-
-                // var ctx = $('#canvas').get('2d');
-                //console.log(ctx)
-                //var img = new Image();
-                //img.onload = function () {
-                //    ctx.drawImage(img, 0, 0);
-                //};
                 $("#trans-section").append();
             };
 
