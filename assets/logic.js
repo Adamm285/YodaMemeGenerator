@@ -70,15 +70,15 @@ function imgGet() {
         for (let i = 0; i < 5; i++) {
             var newImg = $("<img>").addClass("userMeme");
             $(newImg).attr("src", response.hits[i].largeImageURL);
-            $("#trans-section").prepend(newImg);
+            $("#meme-section").prepend(newImg);
         };
 
         //on click to select the user image
         $(".userMeme").on("click", function () {
             console.log(this)
-            $(this).appendTo("#meme-section");
+            $(this).appendTo("#trans-section");
             $(this).addClass("selectedImg");
-            $("#trans-section").empty();
+            $("#meme-section").empty();
 
             //function to put selected image into a canvas
             function makeMeme () {
@@ -86,7 +86,7 @@ function imgGet() {
                 //creates canvas and sets 2d property
                 var canvas = $("<canvas>");
                 var context = $(canvas).get('2d');
-
+                
                 //gives image path and makes new img for canvas
                 var imgPath = $('.selectedImg').attr('src');
                 var imgObj = new Image();
@@ -103,7 +103,6 @@ function imgGet() {
                 imgObj.onload = function () {
                     context.drawImage(imgObj, x, y);
                 };
-                console.log(".imgCanvas")
                 console.log(context)
             };
             makeMeme();
