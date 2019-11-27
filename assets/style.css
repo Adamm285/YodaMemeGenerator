@@ -47,8 +47,9 @@ img {
     font-family: 'Bungee Shade', cursive;
 }
 
-@import "susy";
-@import "compass/reset";
+"susy";
+"compass/reset";
+
 
 .stars, .twinkling, .clouds {
 	position:absolute;
