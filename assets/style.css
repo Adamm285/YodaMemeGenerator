@@ -45,8 +45,9 @@ img {
 border-block-color: red;
 }
 
-@import "susy";
-@import "compass/reset";
+"susy";
+"compass/reset";
+
 
 .stars, .twinkling, .clouds {
 	position:absolute;
