@@ -87,7 +87,7 @@ function imgGet() {
                     base_image = new Image();
                     base_image.src = $('.selectedImg').attr('src');
                     base_image.onload = function () {
-                        context.drawImage(base_image, 0, 0, 480, 384);
+                        context.drawImage(base_image, 0, 0, 480, 480);
                     }
                 }
 
