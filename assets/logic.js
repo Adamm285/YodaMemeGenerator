@@ -81,13 +81,19 @@ function imgGet() {
 
                 var canvas = document.getElementById('myCanvas'),
                     context = canvas.getContext('2d');
+                    topText = $("#top-text").val();
                 make_base();
 
                 function make_base() {
+
                     base_image = new Image();
                     base_image.src = $('.selectedImg').attr('src');
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+                    context.fillStyle = "#3e3e3e";
+                    context.font = "16px Arial";
                     base_image.onload = function () {
                         context.drawImage(base_image, 0, 0, 480, 480);
+                        context.fillText(topText, 20, canvas.height - 20);
                     }
                 }
 
@@ -98,6 +104,7 @@ function imgGet() {
 
             $("#meme-section").empty();
         });
+
     });
 };
 
