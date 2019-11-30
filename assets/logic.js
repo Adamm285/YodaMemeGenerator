@@ -1,5 +1,10 @@
 // 
 // 
+var base_image;
+var context;
+var topText;
+var canvas;
+var imgSrc;
 var topics = ["you will hold my beer", "yoda is so cute", ];
 // works fine just turned off for testing
 // function topicInfo() {
@@ -47,9 +52,26 @@ $("#run-search").on("click", function (event) {
 });
 // end of yoda translator section
 
-
 // Meme collection section
 var topics2 = ["yoda", "baby yoda"];
+
+function make_base() {
+    console.log("world");
+    topText = $("#top-text").val();
+    bottomText = $("#bottom-text").val();
+    base_image = new Image();
+    base_image.src = imgSrc;
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.fillStyle = "#ffffff";
+    context.font = "160px Arial";
+    console.log(base_image);
+
+    base_image.onload = function () {
+        context.drawImage(base_image, 0, 0, 480, 480);
+        context.fillText(topText, -20, canvas.height + 20);
+        context.fillText(bottomText, 20, canvas.height - 20);
+    }
+}
 
 function imgGet() {
     $("#trans-section").empty()
@@ -79,23 +101,10 @@ function imgGet() {
             //function to put selected image into a canvas
             function makeMeme() {
 
-                var canvas = document.getElementById('myCanvas'),
-                    context = canvas.getContext('2d');
-                    topText = $("#top-text").val();
+                canvas = document.getElementById('myCanvas')
+                context = canvas.getContext('2d');
+                imgSrc = $('.selectedImg').attr('src');
                 make_base();
-
-                function make_base() {
-
-                    base_image = new Image();
-                    base_image.src = $('.selectedImg').attr('src');
-                    context.clearRect(0, 0, canvas.width, canvas.height);
-                    context.fillStyle = "#3e3e3e";
-                    context.font = "16px Arial";
-                    base_image.onload = function () {
-                        context.drawImage(base_image, 0, 0, 480, 480);
-                        context.fillText(topText, 20, canvas.height - 20);
-                    }
-                }
 
                 $("#trans-section").append();
             };
@@ -107,8 +116,17 @@ function imgGet() {
 
     });
 };
+// 
+// 
+
+$("#top-btn").click(function () {
+    console.log("testing");
+    make_base();
+
+});
 
 // 
+//second button 
 $("#meme-search").on("click", function (event) {
     event.preventDefault();
     var topic2 = $("#meme-term").val();
@@ -157,3 +175,15 @@ function renderImage(tr) {
         $("#buttons-view").append(a);
     }
 }
+// function make_base() {
+
+//     base_image = new Image();
+//     base_image.src = $('.selectedImg').attr('src');
+//     context.clearRect(0, 0, canvas.width, canvas.height);
+//     context.fillStyle = "#3e3e3e";
+//     context.font = "160px Arial";
+//     base_image.onload = function () {
+//         context.drawImage(base_image, 0, 0, 480, 480);
+//         // context.fillText(topText, 20, canvas.height - 20);
+//     }
+// }

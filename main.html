@@ -11,42 +11,24 @@
 <body>
 
 
-  <div id='container'>
-
-  </div>
+  <h1>Star Wars Page</h1>
+  <div id="root"></div>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
   <script>
-
-    fetch("https://ronreiter-meme-generator.p.rapidapi.com/meme?font=Impact&font_size=50&meme=Condescending-Wonka&top=Top%20text&bottom=Bottom%20text", {
-      "method": "GET",
-      "headers": {
-        "x-rapidapi-host": "ronreiter-meme-generator.p.rapidapi.com",
-        "x-rapidapi-key": "8cbc079c1dmsh23d13dcb3653048p16f423jsn635842feeaf6",
-      }
+    $(document).ready(function(){
+      $.get("https://swapi.co/api/planets/")
+  .done(function(results){
+    var planetArr = results; 
+    for (var i = 0; i = planetArr.length; i++){
+      $("#root").append("<p>" + planetArr[i].name + "</p>");
+    }
+  })
     })
-      .then(response => response.body)
-      .then(body => {
-        body.getReader()
-          .read()
-          .then(({ value, done }) => {
-
-            var ascii = new Uint8Array(value);
-            var b64encoded = btoa(String.fromCharCode.apply(null, ascii));
-
-            console.log(b64encoded)
-
-            $('#container').html(`<img src="data:image/jpeg;base64, ${b64encoded}"/>`);
-
-          })
-          .catch(err => {
-            console.log(err);
-          });
-
-      })
-
-  
 
   </script>
 
