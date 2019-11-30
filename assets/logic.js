@@ -1,4 +1,15 @@
 // 
+var firebaseConfig = {
+    apiKey: "AIzaSyBK1fc65gakM648BQv8vzKYXlwXANIziCw",
+    authDomain: "meme-generator-88fd0.firebaseapp.com",
+    databaseURL: "https://meme-generator-88fd0.firebaseio.com",
+    projectId: "meme-generator-88fd0",
+    storageBucket: "meme-generator-88fd0.appspot.com",
+    messagingSenderId: "224407351995",
+    appId: "1:224407351995:web:54bc95a22f657d7fa36f9e"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 // 
 var base_image;
 var context;
