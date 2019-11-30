@@ -96,14 +96,16 @@ function make_base() {
     base_image = new Image();
     base_image.src = imgSrc;
     context.clearRect(0, 0, canvas.width, canvas.height);
+    context.lineWidth = canvas.width;
+    context.textAlign = 'center';
     context.fillStyle = "#ffffff";
-    context.font = "160px Arial";
+    context.font = "50px Arial";
     console.log(base_image);
     // 
     base_image.onload = function () {
         context.drawImage(base_image, 0, 0, 480, 480);
-        context.fillText(topText, 20, canvas.height - 360);
-        context.fillText(bottomText, 20, canvas.height - 20);
+        context.fillText(topText, 240, canvas.height - 420);
+        context.fillText(bottomText, 240, canvas.height - 20);
     }
 }
 // 
