@@ -1,7 +1,14 @@
 
 i {
+
     color: rgb(13, 156, 56);
-    font-family: 'Bungee Shade', cursive;
+	font-family: 'Bungee Shade', cursive;
+	
+}
+
+.header {
+	position: absolute;
+	z-index: 5;
 }
 
 label {
@@ -16,11 +23,28 @@ label {
     font-family: 'Bungee Shade', cursive;
     font-size: 4rem;
 }
+.adjustWidth{
+	width: 100%;
+}
+.pushDown{
+	margin-top:5%;
+}
 
-body {
+
+
+@media only screen and (max-width: 400px) {
+	.pushDown{
+		margin-top:30%;
+	}
+  }
+
+
+
+
+/* body {
     background: url(https://wallpapercave.com/wp/apRXQtN.jpg);
     background-repeat: repeat;
-}
+} */
 
 img {
     height: 250px;
@@ -54,6 +78,7 @@ img {
 
 "susy";
 "compass/reset";
+
 
 
 .stars, .twinkling, .clouds {
@@ -90,3 +115,4 @@ img {
 	from {background-position:0 5;}
 	to {background-position:10000px 0;}
 }
+

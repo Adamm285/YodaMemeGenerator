@@ -135,6 +135,48 @@ $("#meme-search").on("click", function (event) {
 });
 //
 
+var user_configuration={
+
+    // "circle" or "square"
+    shape:"circle",
+
+    // star size in pixels
+    initial_size:"12px",
+
+    // final size of the stars after expansion 
+    final_size:"64px", 
+
+    // how fast the stars get bigger, in milliseconds
+    expand_speed:"1s", 
+
+    // how long until the star fades out
+    fade_delay:"0.5s", 
+
+    // how long the star fades for
+    fade_duration:"0.5s", 
+
+    // The variety of colors of the stars. Can be any CSS complient color (eg. HEX, rgba, hsl)
+    colors:["hsla(62, 50%,50%, 0.5)", "rgba(255,255,255,0.5)","hsla(180, 72%, 52%, 0.5)"], 
+
+    // how often a new wave of stars pop-out (in milliseconds. Bigger==longer)
+    frequency:100, 
+
+    // how many stars pop out per wave
+    density: 1,
+
+    // whether the stars disappear after they are created
+    keep_lit: false, 
+
+    // whether the stars rotate through out their expansion
+    rotation: true, 
+
+    // how much of the element's area the stars will show up in (0-1)
+    coverage:1, 
+
+    // the elements the script will target based on the class name
+    target_class:'.starlight'
+
+};
 // Converts image to canvas; returns new canvas element
 function convertImageToCanvas(image) {
     // var canvas = document.createElement("canvas");
@@ -145,6 +187,7 @@ function convertImageToCanvas(image) {
     var cors = "https://cors-anywhere.herokuapp.com/";
     // var image = new Image();
     // image.src = cors + imgSrc;;
+
 
 
     var filename = cors + imgSrc;
