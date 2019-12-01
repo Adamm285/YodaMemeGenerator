@@ -1,5 +1,18 @@
 // 
+var firebaseConfig = {
+    apiKey: "AIzaSyBK1fc65gakM648BQv8vzKYXlwXANIziCw",
+    authDomain: "meme-generator-88fd0.firebaseapp.com",
+    databaseURL: "https://meme-generator-88fd0.firebaseio.com",
+    projectId: "meme-generator-88fd0",
+    storageBucket: "meme-generator-88fd0.appspot.com",
+    messagingSenderId: "224407351995",
+    appId: "1:224407351995:web:54bc95a22f657d7fa36f9e"
+};
+// Initialized Firebase
+firebase.initializeApp(firebaseConfig);
 // 
+var database = firebase.database();
+// var storage = firebase.storage().ref();
 var base_image;
 var context;
 var topText;
@@ -96,14 +109,16 @@ function make_base() {
     base_image = new Image();
     base_image.src = imgSrc;
     context.clearRect(0, 0, canvas.width, canvas.height);
+    context.lineWidth = canvas.width;
+    context.textAlign = 'center';
     context.fillStyle = "#ffffff";
-    context.font = "160px Arial";
+    context.font = "50px Arial";
     console.log(base_image);
     // 
     base_image.onload = function () {
         context.drawImage(base_image, 0, 0, 480, 480);
-        context.fillText(topText, 20, canvas.height - 360);
-        context.fillText(bottomText, 20, canvas.height - 20);
+        context.fillText(topText, 240, canvas.height - 420);
+        context.fillText(bottomText, 240, canvas.height - 20);
     }
 }
 // 
@@ -117,6 +132,93 @@ $("#meme-search").on("click", function (event) {
     var topic2 = $("#meme-term").val();
     topics2.push(topic2);
     imgGet();
+});
+//
+
+// Converts image to canvas; returns new canvas element
+function convertImageToCanvas(image) {
+    // var canvas = document.createElement("canvas");
+    // canvas.width = image.width;
+    // canvas.height = image.height;
+    // canvas.getContext("2d").drawImage(image, 0, 0);
+
+    var cors = "https://cors-anywhere.herokuapp.com/";
+    // var image = new Image();
+    // image.src = cors + imgSrc;;
+
+
+    var filename = cors + imgSrc;
+    //console.log("Archivo: " + filename);
+
+
+
+
+
+    // take any image
+    // let imag = document.querySelector('.selectedImg');
+
+    // var reader = new FileReader();
+    // reader.onloadend = function (evt) {
+    //   var blob = new Blob([evt.target.result], { type: "image/jpeg" });
+
+    //   var storageUrl = filename;
+    //   var storageRef = firebase.storage().ref(storageUrl);
+    //  // console.warn(file); // Watch Screenshot
+    //   var uploadTask = storageRef.put(blob);
+
+    // }
+
+    // reader.onerror = function (e) {
+    //     console.log("Failed file read: " + e.toString());
+    // };
+    // reader.readAsArrayBuffer(file);
+
+
+    var arrayBufferView = new Uint8Array("./assets/images/yoda1.jpg");
+    var blob = new Blob([arrayBufferView], {
+        type: "image/jpg"
+    });
+    var storageRef = firebase.storage().ref(filename);
+    var uploadTask = storageRef.put(blob);
+
+    return canvas;
+}
+
+function convertCanvasToImage(canvas) {
+    var image = new Image();
+    image.src = canvas.toDataURL("image/png");
+
+    return image;
+}
+
+//TODO: get image to save in firebase/ fix tainted error
+$("#submit-btn").click(function () {
+    var cors = "https://cors-anywhere.herokuapp.com/";
+    var blobImg = new Image();
+    blobImg.crossOrigin = 'anonymous';
+    blobImg.src = cors + imgSrc;
+    console.log(blobImg.src)
+    convertImageToCanvas(blobImg)
+
+    // var canvas = document.getElementById("myCanvas")
+    // canvas.toBlob(function (blob) {
+    //     var newImg = document.createElement('img'),
+    //         url = URL.createObjectURL(blob)
+    //     newImg.onload = function () {
+    //         // no longer need to read the blob so it's revoked
+    //         URL.revokeObjectURL(url)
+    //     }
+    //     newImg.src = url
+    //    // database.ref().push(newImg);
+    // })
+
+
+    // .toBlob(function (blob) {
+    //     var blobImg = new Image();
+    //     blobImg.crossOrigin = 'anonymous';
+    //     blobImg.src = blob;
+    //     database.ref().push(blobImg);
+    // });
 });
 // 
 function renderImage() {
