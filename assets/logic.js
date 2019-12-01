@@ -1,4 +1,6 @@
 // 
+// 
+// 
 var firebaseConfig = {
     apiKey: "AIzaSyBK1fc65gakM648BQv8vzKYXlwXANIziCw",
     authDomain: "meme-generator-88fd0.firebaseapp.com",
@@ -8,6 +10,7 @@ var firebaseConfig = {
     messagingSenderId: "224407351995",
     appId: "1:224407351995:web:54bc95a22f657d7fa36f9e"
 };
+// 
 // Initialized Firebase
 firebase.initializeApp(firebaseConfig);
 // 
@@ -20,11 +23,13 @@ var canvas;
 var imgSrc;
 var topics2 = [];
 var topics = ["you will hold my beer", "yoda is so cute", ];
+// 
 // works fine just turned off for testing
+// 
 // function topicInfo() {
 //     var cors = "https://cors-anywhere.herokuapp.com/";
 //     var queryURL = cors + "https://yodish.p.rapidapi.com/yoda.json?text=" +
-//         "babyyoda";
+//         "q";
 //     var q = $(this).attr("data-topic");
 //     var settings = {
 //         "async": true,
@@ -133,136 +138,6 @@ $("#meme-search").on("click", function (event) {
     topics2.push(topic2);
     imgGet();
 });
-//
-
-var user_configuration={
-
-    // "circle" or "square"
-    shape:"circle",
-
-    // star size in pixels
-    initial_size:"12px",
-
-    // final size of the stars after expansion 
-    final_size:"64px", 
-
-    // how fast the stars get bigger, in milliseconds
-    expand_speed:"1s", 
-
-    // how long until the star fades out
-    fade_delay:"0.5s", 
-
-    // how long the star fades for
-    fade_duration:"0.5s", 
-
-    // The variety of colors of the stars. Can be any CSS complient color (eg. HEX, rgba, hsl)
-    colors:["hsla(62, 50%,50%, 0.5)", "rgba(255,255,255,0.5)","hsla(180, 72%, 52%, 0.5)"], 
-
-    // how often a new wave of stars pop-out (in milliseconds. Bigger==longer)
-    frequency:100, 
-
-    // how many stars pop out per wave
-    density: 1,
-
-    // whether the stars disappear after they are created
-    keep_lit: false, 
-
-    // whether the stars rotate through out their expansion
-    rotation: true, 
-
-    // how much of the element's area the stars will show up in (0-1)
-    coverage:1, 
-
-    // the elements the script will target based on the class name
-    target_class:'.starlight'
-
-};
-// Converts image to canvas; returns new canvas element
-function convertImageToCanvas(image) {
-    // var canvas = document.createElement("canvas");
-    // canvas.width = image.width;
-    // canvas.height = image.height;
-    // canvas.getContext("2d").drawImage(image, 0, 0);
-
-    var cors = "https://cors-anywhere.herokuapp.com/";
-    // var image = new Image();
-    // image.src = cors + imgSrc;;
-
-
-
-    var filename = cors + imgSrc;
-    //console.log("Archivo: " + filename);
-
-
-
-
-
-    // take any image
-    // let imag = document.querySelector('.selectedImg');
-
-    // var reader = new FileReader();
-    // reader.onloadend = function (evt) {
-    //   var blob = new Blob([evt.target.result], { type: "image/jpeg" });
-
-    //   var storageUrl = filename;
-    //   var storageRef = firebase.storage().ref(storageUrl);
-    //  // console.warn(file); // Watch Screenshot
-    //   var uploadTask = storageRef.put(blob);
-
-    // }
-
-    // reader.onerror = function (e) {
-    //     console.log("Failed file read: " + e.toString());
-    // };
-    // reader.readAsArrayBuffer(file);
-
-
-    var arrayBufferView = new Uint8Array("./assets/images/yoda1.jpg");
-    var blob = new Blob([arrayBufferView], {
-        type: "image/jpg"
-    });
-    var storageRef = firebase.storage().ref(filename);
-    var uploadTask = storageRef.put(blob);
-
-    return canvas;
-}
-
-function convertCanvasToImage(canvas) {
-    var image = new Image();
-    image.src = canvas.toDataURL("image/png");
-
-    return image;
-}
-
-//TODO: get image to save in firebase/ fix tainted error
-$("#submit-btn").click(function () {
-    var cors = "https://cors-anywhere.herokuapp.com/";
-    var blobImg = new Image();
-    blobImg.crossOrigin = 'anonymous';
-    blobImg.src = cors + imgSrc;
-    console.log(blobImg.src)
-    convertImageToCanvas(blobImg)
-
-    // var canvas = document.getElementById("myCanvas")
-    // canvas.toBlob(function (blob) {
-    //     var newImg = document.createElement('img'),
-    //         url = URL.createObjectURL(blob)
-    //     newImg.onload = function () {
-    //         // no longer need to read the blob so it's revoked
-    //         URL.revokeObjectURL(url)
-    //     }
-    //     newImg.src = url
-    //    // database.ref().push(newImg);
-    // })
-
-
-    // .toBlob(function (blob) {
-    //     var blobImg = new Image();
-    //     blobImg.crossOrigin = 'anonymous';
-    //     blobImg.src = blob;
-    //     database.ref().push(blobImg);
-    // });
-});
 // 
 function renderImage() {
     $("#meme-section").empty();
@@ -293,4 +168,123 @@ function clear() {
     $("#trans-section").empty();
 }
 $("#clear-all").on("click", clear);
+// end of Meme section
 // 
+// FireBase Section
+// Converts image to canvas; returns new canvas element
+function convertImageToCanvas(image) {
+    // var canvas = document.createElement("canvas");
+    // canvas.width = image.width;
+    // canvas.height = image.height;
+    // canvas.getContext("2d").drawImage(image, 0, 0);
+
+    var cors = "https://cors-anywhere.herokuapp.com/";
+    // var image = new Image();
+    // image.src = cors + imgSrc;;
+    var filename = cors + imgSrc;
+    //console.log("Archivo: " + filename);
+    // take any image
+    // let imag = document.querySelector('.selectedImg');
+    // var reader = new FileReader();
+    // reader.onloadend = function (evt) {
+    //   var blob = new Blob([evt.target.result], { type: "image/jpeg" });
+    //   var storageUrl = filename;
+    //   var storageRef = firebase.storage().ref(storageUrl);
+    //  // console.warn(file); // Watch Screenshot
+    //   var uploadTask = storageRef.put(blob);
+    // }
+    // reader.onerror = function (e) {
+    //     console.log("Failed file read: " + e.toString());
+    // };
+    // reader.readAsArrayBuffer(file);
+
+    var arrayBufferView = new Uint8Array("./assets/images/yoda1.jpg");
+    var blob = new Blob([arrayBufferView], {
+        type: "image/jpg"
+    });
+    var storageRef = firebase.storage().ref(filename);
+    var uploadTask = storageRef.put(blob);
+
+    return canvas;
+}
+
+function convertCanvasToImage(canvas) {
+    var image = new Image();
+    image.src = canvas.toDataURL("image/png");
+
+    return image;
+}
+//TODO: get image to save in firebase/ fix tainted error
+$("#submit-btn").click(function () {
+    var cors = "https://cors-anywhere.herokuapp.com/";
+    var blobImg = new Image();
+    blobImg.crossOrigin = 'anonymous';
+    blobImg.src = cors + imgSrc;
+    console.log(blobImg.src)
+    convertImageToCanvas(blobImg)
+
+    // var canvas = document.getElementById("myCanvas")
+    // canvas.toBlob(function (blob) {
+    //     var newImg = document.createElement('img'),
+    //         url = URL.createObjectURL(blob)
+    //     newImg.onload = function () {
+    //         // no longer need to read the blob so it's revoked
+    //         URL.revokeObjectURL(url)
+    //     }
+    //     newImg.src = url
+    //    // database.ref().push(newImg);
+    // })
+    // .toBlob(function (blob) {
+    //     var blobImg = new Image();
+    //     blobImg.crossOrigin = 'anonymous';
+    //     blobImg.src = blob;
+    //     database.ref().push(blobImg);
+    // });
+});
+// end of FireBase Section
+// 
+// animated background section
+var user_configuration = {
+
+    // "circle" or "square"
+    shape: "circle",
+
+    // star size in pixels
+    initial_size: "12px",
+
+    // final size of the stars after expansion 
+    final_size: "64px",
+
+    // how fast the stars get bigger, in milliseconds
+    expand_speed: "1s",
+
+    // how long until the star fades out
+    fade_delay: "0.5s",
+
+    // how long the star fades for
+    fade_duration: "0.5s",
+
+    // The variety of colors of the stars. Can be any CSS complient color (eg. HEX, rgba, hsl)
+    colors: ["hsla(62, 50%,50%, 0.5)", "rgba(255,255,255,0.5)", "hsla(180, 72%, 52%, 0.5)"],
+
+    // how often a new wave of stars pop-out (in milliseconds. Bigger==longer)
+    frequency: 100,
+
+    // how many stars pop out per wave
+    density: 1,
+
+    // whether the stars disappear after they are created
+    keep_lit: false,
+
+    // whether the stars rotate through out their expansion
+    rotation: true,
+
+    // how much of the element's area the stars will show up in (0-1)
+    coverage: 1,
+
+    // the elements the script will target based on the class name
+    target_class: '.starlight'
+
+};
+// End of Code 
+//
