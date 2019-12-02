@@ -29,7 +29,7 @@ var topics = ["you will hold my beer", "yoda is so cute", ];
 // function topicInfo() {
 //     var cors = "https://cors-anywhere.herokuapp.com/";
 //     var queryURL = cors + "https://yodish.p.rapidapi.com/yoda.json?text=" +
-//         "q";
+//         "babyyoda";
 //     var q = $(this).attr("data-topic");
 //     var settings = {
 //         "async": true,
@@ -48,7 +48,7 @@ var topics = ["you will hold my beer", "yoda is so cute", ];
 //         console.log(response.contents.translated);
 //     });
 // };
-//
+// //
 function renderButtons() {
     $("#buttons-view").empty();
     for (var i = 0; i < topics.length; i++) {
@@ -106,7 +106,7 @@ function imgGet() {
         });
     });
 };
-// 
+//
 function make_base() {
     console.log("world");
     topText = $("#top-text").val();
@@ -182,7 +182,7 @@ function convertImageToCanvas(image) {
     // var image = new Image();
     // image.src = cors + imgSrc;;
     var filename = cors + imgSrc;
-    //console.log("Archivo: " + filename);
+    //console.log("Archive: " + filename);
     // take any image
     // let imag = document.querySelector('.selectedImg');
     // var reader = new FileReader();
@@ -207,13 +207,14 @@ function convertImageToCanvas(image) {
 
     return canvas;
 }
-
+// 
 function convertCanvasToImage(canvas) {
     var image = new Image();
     image.src = canvas.toDataURL("image/png");
 
     return image;
 }
+// 
 //TODO: get image to save in firebase/ fix tainted error
 $("#submit-btn").click(function () {
     var cors = "https://cors-anywhere.herokuapp.com/";

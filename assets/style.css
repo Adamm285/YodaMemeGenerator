@@ -76,11 +76,6 @@ img {
 	margin-left: -1px;
 }
 
-"susy";
-"compass/reset";
-
-
-
 .stars, .twinkling, .clouds {
 	position:absolute;
 	display:block;

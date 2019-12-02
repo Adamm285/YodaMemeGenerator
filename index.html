@@ -9,12 +9,10 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="./assets/reset.css">
-
-    <link rel="stylesheet" type="text/css" href="./assets/style.css">
-    <link rel="stylesheet" href="./assets/twinkling.css">
     <link href="https://fonts.googleapis.com/css?family=Bungee+Shade&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Bungee+Hairline&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="./assets/twinkling.css">
+    <link rel="stylesheet" type="text/css" href="./assets/style.css">
     <meta charset="UTF-8">
     <title>Yoda</title>
     <!-- Bootstrap CSS CDN  -->
@@ -30,219 +28,139 @@
         }
     </style>
 
-
-
 </head>
 
-
-
 <body>
-
-    <div class="background-animation">
+    <div class="cloud">
         <div class="stars">
             <div class="twinkling">
-
-            </div>
-
-<body class="stars" class="twinkling" class="clouds">
-
-
-
-    <div class="container">
-        <div class="jumbotron" style="background-color: rgb(191, 255, 138) ; color: white;">
-            <h1 class="text-center">
-                <strong>
-                    <i>Yoda Meme Generator</i></strong>
-            </h1>
-
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                
-                <div class="  adjustWidth"
-                    style="position: absolute;z-index:5 ; height: 10%;color: white;">
-                    <h1 class="text-center">
-                        <strong>
-                            <i>Yoda Meme Generator</i></strong>
-                    </h1>
-                </div>
-            </div>
-        </div>
-
-<div class="pushDown">
-        <div class="row">
-                <div class="col-sm-12">
-                    <br>
-                   
-                        <div class="card adjustWidth">
-                            <div class="card-header">
+                <div class="background-animation stars twinkling">
+                    <div class="container">
+                        <div class="jumbotron" style="background-color: rgb(191, 255, 138) ; color: white;">
+                            <h1 class="text-center">
                                 <strong>
-                                    <i class="giphy-list-alt"> Search Parameters</i></strong>
-                            </div>
-                            <div class="card-body">
-                                <form role="form">
-                                    <div class="form-group">
-                                        <label for="search" class="instructions">Translate to Yoda Speak:</label>
-                                        <input type="text" class="form-control" id="yoda-term">
-                                    </div>
-                                    <button type="submit" class="btn btn-default" id="run-search">
-                                        <i class="giphy-search"> Search</i></button>
-                                    <button class="btn btn-default" id="clear-all">
-                                        <i class="giphy-trash"> Clear Results</i></button>
-                                </form>
-                            </div>
-                        </div>
-               
-    
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <br>
-                    <div class="card adjustWidth">
-                        <div class="card-header">
-                            <strong>
-                                <i class="trans-table"> Translator</i></strong>
-                        </div>
-                        <div class="card-body" id="buttons-view">
+                                    <i>Yoda Meme Generator</i></strong>
+                            </h1>
+
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 ">
-                    <br>
-                    <div class="card adjustWidth">
-                        <div class="card-header">
-                            <strong>
-                                <i class="giphy-list-alt"> Search Parameters</i></strong>
-                        </div>
-                        <div class="card-body">
-                            <form role="form">
-                                <div class="form-group">
-                                    <label for="search" class="instructions">Search for a meme:</label>
-                                    <input type="text" class="form-control" id="meme-term">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+
+                                <div class="  adjustWidth"
+                                    style="position: absolute;z-index:5 ; height: 10%;color: white;">
+                                    <h1 class="text-center">
+                                        <strong>
+                                            <i>Yoda Meme Generator</i></strong>
+                                    </h1>
                                 </div>
-                                <button type="submit" class="btn btn-default" id="meme-search">
-                                    <i class="giphy-search"> Search</i></button>
-                                <button class="btn btn-default" id="clear-all">
-                                    <i class="giphy-trash"> Clear Results</i></button>
-                            </form>
+                            </div>
+                        </div>
+                        <div class="pushDown">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <br>
+                                    <div class="card adjustWidth">
+                                        <div class="card-header">
+                                            <strong>
+                                                <i class="giphy-list-alt"> Search Parameters</i></strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <form role="form">
+                                                <div class="form-group">
+                                                    <label for="search" class="instructions">Translate to Yoda
+                                                        Speak:</label>
+                                                    <input type="text" class="form-control" id="yoda-term">
+                                                </div>
+                                                <button type="submit" class="btn btn-default" id="run-search">
+                                                    <i class="giphy-search"> Search</i></button>
+                                                <button class="btn btn-default" id="clear-all">
+                                                    <i class="giphy-trash"> Clear Results</i></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <br>
+                                    <div class="card adjustWidth">
+                                        <div class="card-header">
+                                            <strong>
+                                                <i class="trans-table"> Translator</i></strong>
+                                        </div>
+                                        <div class="card-body" id="buttons-view">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 ">
+                                    <br>
+                                    <div class="card adjustWidth">
+                                        <div class="card-header">
+                                            <strong>
+                                                <i class="giphy-list-alt"> Search Parameters</i></strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <form role="form">
+                                                <div class="form-group">
+                                                    <label for="search" class="instructions">Search for a meme:</label>
+                                                    <input type="text" class="form-control" id="meme-term">
+                                                </div>
+                                                <button type="submit" class="btn btn-default" id="meme-search">
+                                                    <i class="giphy-search"> Search</i></button>
+                                                <button class="btn btn-default" id="clear-all">
+                                                    <i class="giphy-trash"> Clear Results</i></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <br>
+                                    <div class="card adjustWidth">
+                                        <div class="card-header">
+                                            <strong>
+                                                <i class="giphy-table list-group" id=""> Select a Meme</i></strong>
+                                        </div>
+                                        <div class="card-body" id="meme-section">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <br>
+                                    <div class="card adjustWidth">
+                                        <div class="card-header">
+                                            <strong>
+                                                <i class="meme-table"> Results</i></strong>
+                                        </div>
+                                        <div class="card-body" id="trans-section">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-sm-12">
-                    <br>
-                    <div class="card adjustWidth">
-                        <div class="card-header">
-                            <strong>
-                                <i class="giphy-table list-group" id=""> Select a Meme</i></strong>
-                        </div>
-                        <div class="card-body" id="meme-section">
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-    
-            <div class="row">
-                <div class="col-sm-12">
-                    <br>
-                    <div class="card adjustWidth">
-                        <div class="card-header">
-                            <strong>
-                                <i class="meme-table"> Results</i></strong>
-                        </div>
-                        <div class="card-body" id="trans-section">
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-</div>
-
-        
-
+        </div>
     </div>
 
 
+
+
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-storage.js"></script>
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
     <script src="assets/logic.js"></script>
-    <script src="/path/to/jquery.js"></script>
-    <script src="/path/to/starlight.js"></script>
 
-
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <br>
-                <div class="card">
-                    <div class="card-header">
-                        <strong>
-                            <i class="giphy-table list-group" id=""> Select a Meme</i></strong>
-                    </div>
-                    <div class="card-body" id="meme-section">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-sm-12">
-                <br>
-                <div class="card">
-                    <div class="card-header">
-                        <strong>
-                            <i class="meme-table"> Results</i></strong>
-                    </div>
-
-                    <div class="row card-body" id="row">
-                        <div class="col-md-6">
-                            <canvas id="myCanvas" width="480px" height="480px"></canvas>
-                        </div>
-                        <div class="col-md-2"></div>
-                        <div class="col-md-3">
-                            <br>
-                            <label for="search" class="instructions">Enter Top Text Here:</label>
-                            <input type="text" class="form-control" id="top-text">
-                            <br>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label for="search" class="instructions">Enter Bottom Text Here:</label>
-                                    <input type="text" class="form-control" id="bottom-text">
-                                    <br>
-                                    <button type="button" id="top-btn" class="btn btn-primary">Add Text</button>
-                                    <button type="button" id="submit-btn" class="btn btn-success">Submit Meme</button>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-
-
-        <script src="https://code.jquery.com/jquery.js"></script>
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js">
-        </script>
-        <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-database.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-storage.js"></script>
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script> -->
-        <script src="assets/logic.js"></script>
 </body>
 
 </html>
