@@ -9,6 +9,8 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="./assets/reset.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Bungee+Shade&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Bungee+Hairline&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/twinkling.css">
@@ -16,17 +18,6 @@
     <meta charset="UTF-8">
     <title>Yoda</title>
     <!-- Bootstrap CSS CDN  -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
-    <style>
-        .card-body a {
-            word-break: break-all;
-        }
-
-        .articleHeadline {
-            line-height: 1.5;
-        }
-    </style>
 
 </head>
 
@@ -140,6 +131,21 @@
                                                 <i class="meme-table"> Results</i></strong>
                                         </div>
                                         <div class="card-body" id="trans-section">
+                                            <div class="row card-body" id="row">
+                                                <div class="col-md-6">
+                                                    <canvas id="myCanvas" width="480px" height="480px"></canvas>
+                                                </div>
+                                                <div class="col-md-2"></div>
+                                                <div class="col-md-3">
+                                                    <br> <br>
+                                                    <input type="text" class="form-control" id="top-text">
+                                                    <br> <br>
+                                                    <input type="text" class="form-control" id="bottom-text">
+                                                    <br><br>
+                                                    <button type="button" id="top-btn" class="btn btn-primary">Add Text</button>
+                                                    <button type="button" class="btn btn-success">Submit Meme</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -149,18 +155,14 @@
                 </div>
             </div>
         </div>
-    </div>
 
-
-
-
-    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-storage.js"></script>
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/logic.js"></script>
-
+        <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-storage.js"></script>
+        <script src="https://code.jquery.com/jquery.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/logic.js"></script>
 </body>
 
 </html>
