@@ -94,17 +94,18 @@ $(document).ready(function () {
                 $(this).addClass("selectedImg");
                 //function to put selected image into a canvas
                 function makeMeme() {
-                    
+
                     console.log(canvas);
                     context = canvas.getContext('2d');
                     imgSrc = $('.selectedImg').attr('src');
                     console.log(imgSrc)
                     make_base();
                 };
+
                 function clearDiv() {
                     $("#meme-section").empty();
                 }
-                
+
                 makeMeme();
                 clearDiv();
                 console.log(canvas)
@@ -112,194 +113,200 @@ $(document).ready(function () {
         });
     };
 
-//
-function make_base() {
-    console.log(canvas)
-    console.log("world");
-    topText = $("#top-text").val();
-    bottomText = $("#bottom-text").val();
-    base_image = new Image();
-    base_image.src = imgSrc;
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    context.lineWidth = canvas.width;
-    context.textAlign = 'center';
-    context.fillStyle = "#ffffff";
-    context.font = "50px Arial";
-    console.log(base_image);
+    //
+    function make_base() {
+        console.log(canvas)
+        console.log("world");
+        topText = $("#top-text").val();
+        bottomText = $("#bottom-text").val();
+        base_image = new Image();
+        base_image.src = imgSrc;
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.lineWidth = canvas.width;
+        context.textAlign = 'center';
+        context.fillStyle = "#ffffff";
+        context.font = "50px Arial";
+        console.log(base_image);
+        // 
+        base_image.onload = function () {
+            context.drawImage(base_image, 0, 0, 480, 480);
+            context.fillText(topText, 240, canvas.height - 420);
+            context.fillText(bottomText, 240, canvas.height - 20);
+        }
+    };
+
     // 
-    base_image.onload = function () {
-        context.drawImage(base_image, 0, 0, 480, 480);
-        context.fillText(topText, 240, canvas.height - 420);
-        context.fillText(bottomText, 240, canvas.height - 20);
+    $("#top-btn").click(function () {
+        console.log("testing");
+        make_base();
+    });
+    //second button 
+    $("#meme-search").on("click", function (event) {
+        event.preventDefault();
+        var topic2 = $("#meme-term").val();
+        topics2.push(topic2);
+        imgGet();
+    });
+    // 
+    function renderImage() {
+        $("#meme-section").empty();
+        for (var j = 0; j < topics2.length; j++) {
+            var b = $("<button>");
+            b.addClass("meme-btn");
+            b.attr("meme-topic", topics2[j]);
+            b.text(topics2[j]);
+            $("#meme-section").append(b);
+        }
     }
-};
+    renderImage();
+    // 
+    $("#run-search").on("click", function (event) {
+        event.preventDefault();
+        var topic = $("#yoda-term").val();
+        topics.push(topic);
+        renderButtons();
+        imgGet();
+    });
 
-// 
-$("#top-btn").click(function () {
-    console.log("testing");
-    make_base();
-});
-//second button 
-$("#meme-search").on("click", function (event) {
-    event.preventDefault();
-    var topic2 = $("#meme-term").val();
-    topics2.push(topic2);
-    imgGet();
-});
-// 
-function renderImage() {
-    $("#meme-section").empty();
-    for (var j = 0; j < topics2.length; j++) {
-        var b = $("<button>");
-        b.addClass("meme-btn");
-        b.attr("meme-topic", topics2[j]);
-        b.text(topics2[j]);
-        $("#meme-section").append(b);
-    }
-}
-renderImage();
-// 
-$("#run-search").on("click", function (event) {
-    event.preventDefault();
-    var topic = $("#yoda-term").val();
-    topics.push(topic);
+    //
+    $(document).on("click", ".topic-btn", topicInfo);
     renderButtons();
-    imgGet();
-});
+    $(document).on("click", ".topic-btn", imgGet);
 
-//
-$(document).on("click", ".topic-btn", topicInfo);
-renderButtons();
-$(document).on("click", ".topic-btn", imgGet);
+    // 
+    function clear() {
+        $("#meme-section").empty();
+        $("#trans-section").empty();
+    }
+    $("#clear-all").on("click", clear);
+    // end of Meme section
+    // 
 
-// 
-function clear() {
-    $("#meme-section").empty();
-    $("#trans-section").empty();
-}
-$("#clear-all").on("click", clear);
-// end of Meme section
-// 
-// FireBase Section
-// Converts image to canvas; returns new canvas element
-// function convertImageToCanvas(image) {
-//     // var canvas = document.createElement("canvas");
-//     // canvas.width = image.width;
-//     // canvas.height = image.height;
-//     // canvas.getContext("2d").drawImage(image, 0, 0);
+    //we haven't really touched this, welcome everybody to he wild wild west
+    // FireBase Section
+    // Converts image to canvas; returns new canvas element
 
-//     var cors = "https://cors-anywhere.herokuapp.com/";
-//     // var image = new Image();
-//     // image.src = cors + imgSrc;;
-//     var filename = cors + imgSrc;
-//     //console.log("Archive: " + filename);
-//     // take any image
-//     // let imag = document.querySelector('.selectedImg');
-//     // var reader = new FileReader();
-//     // reader.onloadend = function (evt) {
-//     //   var blob = new Blob([evt.target.result], { type: "image/jpeg" });
-//     //   var storageUrl = filename;
-//     //   var storageRef = firebase.storage().ref(storageUrl);
-//     //  // console.warn(file); // Watch Screenshot
-//     //   var uploadTask = storageRef.put(blob);
-//     // }
-//     // reader.onerror = function (e) {
-//     //     console.log("Failed file read: " + e.toString());
-//     // };
-//     // reader.readAsArrayBuffer(file);
+    //TODO: we are unsure if this is what we want to use
+    function convertImageToCanvas(image) {
+        // var canvas = document.createElement("canvas");
+        // canvas.width = image.width;
+        // canvas.height = image.height;
+        // canvas.getContext("2d").drawImage(image, 0, 0);
 
-//     var arrayBufferView = new Uint8Array("./assets/images/yoda1.jpg");
-//     var blob = new Blob([arrayBufferView], {
-//         type: "image/jpg"
-//     });
-//     var storageRef = firebase.storage().ref(filename);
-//     var uploadTask = storageRef.put(blob);
+        var cors = "https://cors-anywhere.herokuapp.com/";
+        // var image = new Image();
+        // image.src = cors + imgSrc;;
+        var filename = cors + imgSrc;
+        //console.log("Archive: " + filename);
+        // take any image
+        // let imag = document.querySelector('.selectedImg');
+        // var reader = new FileReader();
+        // reader.onloadend = function (evt) {
+        //   var blob = new Blob([evt.target.result], { type: "image/jpeg" });
+        //   var storageUrl = filename;
+        //   var storageRef = firebase.storage().ref(storageUrl);
+        //  // console.warn(file); // Watch Screenshot
+        //   var uploadTask = storageRef.put(blob);
+        // }
+        // reader.onerror = function (e) {
+        //     console.log("Failed file read: " + e.toString());
+        // };
+        // reader.readAsArrayBuffer(file);
 
-//     return canvas;
-// }
+        //TODO: this code was written by phil, we don't fully understand it
+        var arrayBufferView = new Uint8Array("./assets/images/yoda1.jpg");
+        var blob = new Blob([arrayBufferView], {
+            type: "image/jpg"
+        });
+        var storageRef = firebase.storage().ref(filename);
+        var uploadTask = storageRef.put(blob);
 
-// 
-// function convertCanvasToImage(canvas) {
-//     var image = new Image();
-//     image.src = canvas.toDataURL("image/png");
+        return canvas;
+    }
 
-//     return image;
-// }
-//convertCanvasToImage();
-// 
-//TODO: get image to save in firebase/ fix tainted error
-// $("#submit-btn").click(function () {
-//     var cors = "https://cors-anywhere.herokuapp.com/";
-//     var blobImg = new Image();
-//     blobImg.crossOrigin = 'anonymous';
-//     blobImg.src = cors + imgSrc;
-//     console.log(blobImg.src)
-//     //convertImageToCanvas(blobImg)
+    // 
+    function convertCanvasToImage(canvas) {
+        var image = new Image();
+        image.src = canvas.toDataURL("image/png");
 
-//     // var canvas = document.getElementById("myCanvas")
-//     // canvas.toBlob(function (blob) {
-//     //     var newImg = document.createElement('img'),
-//     //         url = URL.createObjectURL(blob)
-//     //     newImg.onload = function () {
-//     //         // no longer need to read the blob so it's revoked
-//     //         URL.revokeObjectURL(url)
-//     //     }
-//     //     newImg.src = url
-//     //    // database.ref().push(newImg);
-//     // })
-//     // .toBlob(function (blob) {
-//     //     var blobImg = new Image();
-//     //     blobImg.crossOrigin = 'anonymous';
-//     //     blobImg.src = blob;
-//     //     database.ref().push(blobImg);
-//     // });
-// });
-// end of FireBase Section
-// 
-// animated background section
-user_configuration = {
+        return image;
+    }
+    convertCanvasToImage();
+    //
+    //TODO: on click may not be function need more information to see problem 
+    //TODO: get image to save in firebase/ fix tainted error
+    $("#submit-btn").click(function () {
+        var cors = "https://cors-anywhere.herokuapp.com/";
+        var blobImg = new Image();
+        blobImg.crossOrigin = 'anonymous';
+        blobImg.src = cors + imgSrc;
+        console.log(blobImg.src)
+        convertImageToCanvas(blobImg)
 
-    // "circle" or "square"
-    shape: "circle",
+        var canvas = document.getElementById("myCanvas")
+        canvas.toBlob(function (blob) {
+                var newImg = document.createElement('img'),
+                    url = URL.createObjectURL(blob)
+                newImg.onload = function () {
+                    // no longer need to read the blob so it's revoked
+                    URL.revokeObjectURL(url)
+                }
+                newImg.src = url
+                // database.ref().push(newImg);
+            })
+            .toBlob(function (blob) {
+                var blobImg = new Image();
+                blobImg.crossOrigin = 'anonymous';
+                blobImg.src = blob;
+                database.ref().push(blobImg);
+            });
+    });
+    // end of FireBase Section
+    // 
+    // animated background section
+    user_configuration = {
 
-    // star size in pixels
-    initial_size: "12px",
+        // "circle" or "square"
+        shape: "circle",
 
-    // final size of the stars after expansion 
-    final_size: "64px",
+        // star size in pixels
+        initial_size: "12px",
 
-    // how fast the stars get bigger, in milliseconds
-    expand_speed: "1s",
+        // final size of the stars after expansion 
+        final_size: "64px",
 
-    // how long until the star fades out
-    fade_delay: "0.5s",
+        // how fast the stars get bigger, in milliseconds
+        expand_speed: "1s",
 
-    // how long the star fades for
-    fade_duration: "0.5s",
+        // how long until the star fades out
+        fade_delay: "0.5s",
 
-    // The variety of colors of the stars. Can be any CSS complient color (eg. HEX, rgba, hsl)
-    colors: ["hsla(62, 50%,50%, 0.5)", "rgba(255,255,255,0.5)", "hsla(180, 72%, 52%, 0.5)"],
+        // how long the star fades for
+        fade_duration: "0.5s",
 
-    // how often a new wave of stars pop-out (in milliseconds. Bigger==longer)
-    frequency: 100,
+        // The variety of colors of the stars. Can be any CSS complient color (eg. HEX, rgba, hsl)
+        colors: ["hsla(62, 50%,50%, 0.5)", "rgba(255,255,255,0.5)", "hsla(180, 72%, 52%, 0.5)"],
 
-    // how many stars pop out per wave
-    density: 1,
+        // how often a new wave of stars pop-out (in milliseconds. Bigger==longer)
+        frequency: 100,
 
-    // whether the stars disappear after they are created
-    keep_lit: false,
+        // how many stars pop out per wave
+        density: 1,
 
-    // whether the stars rotate through out their expansion
-    rotation: true,
+        // whether the stars disappear after they are created
+        keep_lit: false,
 
-    // how much of the element's area the stars will show up in (0-1)
-    coverage: 1,
+        // whether the stars rotate through out their expansion
+        rotation: true,
 
-    // the elements the script will target based on the class name
-    target_class: '.starlight'
+        // how much of the element's area the stars will show up in (0-1)
+        coverage: 1,
 
-};
-// 
+        // the elements the script will target based on the class name
+        target_class: '.starlight'
+
+    };
+    // 
 
 });
 // End of Code 
