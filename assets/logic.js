@@ -24,8 +24,15 @@ var topText;
 var canvas = document.getElementById("myCanvas");
 var topics2 = [];
 var topics = ["hold my beer, you will", "so cute is yoda"];
+var a = $("<button>");
 // 
-// works fine just turned off for testing
+function renderButtons() {
+    $("#buttons-view").empty();
+    for (var i = 0; i < topics.length; i++) {
+        a.addClass("topic-btn");
+        a.attr("data-topic", topics[i]);
+    }
+}
 // 
 function topicInfo() {
     str = $('#yoda-term').val();
@@ -45,37 +52,23 @@ function topicInfo() {
     $.ajax(settings).done(function (response) {
         $("#buttons-view").empty();
         for (var i = 0; i < topics.length; i++) {
-            var a = $("<button>");
-            a.addClass("topic-btn");
-            a.attr("data-topic", topics[i]);
             a.text(response.contents.translated);
+            renderButtons();
             $("#buttons-view").append(a);
             $(".topic-btn").click(function () {
                 console.log("clicked");
                 info = $(this).text();
-                console.log(info);
-                $("#top-text").val(info);
+                textInfo = info.split(",")
+                console.log(textInfo);
+                $("#top-text").val(textInfo[0]);
+                $("#bottom-text").val(textInfo[1]);
             });
         }
     });
+
 };
 // 
-function renderButtons() {
-    $("#buttons-view").empty();
-    for (var i = 0; i < topics.length; i++) {
-        var a = $("<button>");
-        a.addClass("topic-btn");
-        a.attr("data-topic", topics[i]);
-        // a.text(response.contents.translated);
-        $("#buttons-view").append(a);
-        $(".topic-btn").click(function () {
-            console.log("clicked");
-            info = $(this).text();
-            console.log(info);
-            $("#top-text").val(info);
-        });
-    }
-}
+
 //
 // $(document).on("click", ".topic-btn", topicInfo);
 // renderButtons();
@@ -146,7 +139,7 @@ $(document).ready(function () {
         context.lineWidth = canvas.width;
         context.textAlign = 'center';
         context.fillStyle = "#ffffff";
-        context.font = "50px Arial";
+        context.font = "40px Arial";
         console.log(base_image);
         // 
         base_image.onload = function () {
