@@ -76,9 +76,6 @@ function renderButtons() {
         });
     }
 }
-//
-// $(document).on("click", ".topic-btn", topicInfo);
-// renderButtons();
 // 
 $("#term-search").on("click", function (event) {
     event.preventDefault();
@@ -89,6 +86,7 @@ $("#term-search").on("click", function (event) {
     console.log();
 
 });
+// 
 // end of yoda translator section
 // 
 $(document).ready(function () {
@@ -133,7 +131,6 @@ $(document).ready(function () {
             });
         });
     };
-
     //
     function make_base() {
         console.log(canvas)
@@ -155,7 +152,6 @@ $(document).ready(function () {
             context.fillText(bottomText, 240, canvas.height - 20);
         }
     };
-
     // 
     $("#top-btn").click(function () {
         console.log("testing");
@@ -188,12 +184,8 @@ $(document).ready(function () {
         renderButtons();
         imgGet();
     });
-
     //
-    // $(document).on("click", ".topic-btn", topicInfo);
     renderButtons();
-    // $(document).on("click", ".topic-btn", imgGet);
-
     // 
     function clear() {
         $("#meme-section").empty();
@@ -202,18 +194,17 @@ $(document).ready(function () {
     $("#clear-all").on("click", clear);
     // end of Meme section
     // 
-
     //we haven't really touched this, welcome everybody to he wild wild west
     // FireBase Section
     // Converts image to canvas; returns new canvas element
-
+    // 
     //TODO: we are unsure if this is what we want to use
     //     function convertImageToCanvas(image) {
     //         // var canvas = document.createElement("canvas");
     //         // canvas.width = image.width;
     //         // canvas.height = image.height;
     //         // canvas.getContext("2d").drawImage(image, 0, 0);
-
+    // 
     //         var cors = "https://cors-anywhere.herokuapp.com/";
     //         // var image = new Image();
     //         // image.src = cors + imgSrc;;
@@ -233,7 +224,7 @@ $(document).ready(function () {
     //         //     console.log("Failed file read: " + e.toString());
     //         // };
     //         // reader.readAsArrayBuffer(file);
-
+    // 
     //         //TODO: this code was written by phil, we don't fully understand it
     //         var arrayBufferView = new Uint8Array("./assets/images/yoda1.jpg");
     //         var blob = new Blob([arrayBufferView], {
@@ -244,12 +235,10 @@ $(document).ready(function () {
 
     //         return canvas;
     //     }
-
     //     // 
     //     function convertCanvasToImage(canvas) {
     //         var image = new Image();
     //         image.src = canvas.toDataURL("image/png");
-
     //         return image;
     //     }
     //     convertCanvasToImage();
@@ -263,7 +252,6 @@ $(document).ready(function () {
     //         blobImg.src = cors + imgSrc;
     //         console.log(blobImg.src)
     //         convertImageToCanvas(blobImg)
-
     //         var canvas = document.getElementById("myCanvas")
     //         canvas.toBlob(function (blob) {
     //                 var newImg = document.createElement('img'),
@@ -284,8 +272,6 @@ $(document).ready(function () {
     //     });
     //     // end of FireBase Section
     //     // 
-
-
 });
 // End of Code 
 //
