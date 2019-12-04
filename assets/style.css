@@ -29,29 +29,16 @@ label {
 	margin-top:5%;
 }
 
-
-
 @media only screen and (max-width: 400px) {
 	.pushDown{
 		margin-top:30%;
 	}
   }
 
-
-
-
-/* body {
-    background: url(https://wallpapercave.com/wp/apRXQtN.jpg);
-    background-repeat: repeat;
-} */
-
 img {
     height: 250px;
     width: 250px;
-    /* background: url(https://wallpapercave.com/wp/apRXQtN.jpg);
-    z-index: 3; */
 }
-
 
 .instructions {
 	font-weight: bolder;

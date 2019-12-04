@@ -16,24 +16,23 @@ firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 // var storage = firebase.storage().ref(); 
 // 
+var str = $('#yoda-term').val();
+var info;
 var base_image;
 var context;
 var topText;
 var canvas = document.getElementById("myCanvas");
 var topics2 = [];
-var topics = ["you will hold my beer", "yoda is so cute"];
+var topics = ["hold my beer, you will", "so cute is yoda"];
 // 
 // works fine just turned off for testing
 // 
 function topicInfo() {
-    var cors = "https://cors-anywhere.herokuapp.com/";
-    var queryURL = cors + "https://yodish.p.rapidapi.com/yoda.json?text=" +
-        "babyyoda";
-    var q = $(this).attr("data-topic");
+    str = $('#yoda-term').val();
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://yodish.p.rapidapi.com/yoda.json?text=" + q,
+        "url": encodeURI("https://yodish.p.rapidapi.com/yoda.json?text=" + str),
         "method": "POST",
         "headers": {
             "x-rapidapi-host": "yodish.p.rapidapi.com",
@@ -42,31 +41,53 @@ function topicInfo() {
         },
         "data": {}
     }
+    console.log(encodeURI("https://yodish.p.rapidapi.com/yoda.json?text=" + str));
     $.ajax(settings).done(function (response) {
-        $("#trans-section").append(response.contents.translated + " - ");
-        console.log(response.contents.translated);
+        $("#buttons-view").empty();
+        for (var i = 0; i < topics.length; i++) {
+            var a = $("<button>");
+            a.addClass("topic-btn");
+            a.attr("data-topic", topics[i]);
+            a.text(response.contents.translated);
+            $("#buttons-view").append(a);
+            $(".topic-btn").click(function () {
+                console.log("clicked");
+                info = $(this).text();
+                console.log(info);
+                $("#top-text").val(info);
+            });
+        }
     });
 };
-// //
+// 
 function renderButtons() {
     $("#buttons-view").empty();
     for (var i = 0; i < topics.length; i++) {
         var a = $("<button>");
         a.addClass("topic-btn");
         a.attr("data-topic", topics[i]);
-        a.text(topics[i]);
+        // a.text(response.contents.translated);
         $("#buttons-view").append(a);
+        $(".topic-btn").click(function () {
+            console.log("clicked");
+            info = $(this).text();
+            console.log(info);
+            $("#top-text").val(info);
+        });
     }
 }
 //
-$(document).on("click", ".topic-btn", topicInfo);
-renderButtons();
+// $(document).on("click", ".topic-btn", topicInfo);
+// renderButtons();
 // 
-$("#run-search").on("click", function (event) {
+$("#term-search").on("click", function (event) {
     event.preventDefault();
+    topicInfo();
     var topic = $("#yoda-term").val();
     topics.push(topic);
     renderButtons();
+    console.log();
+
 });
 // end of yoda translator section
 // 
@@ -169,9 +190,9 @@ $(document).ready(function () {
     });
 
     //
-    $(document).on("click", ".topic-btn", topicInfo);
+    // $(document).on("click", ".topic-btn", topicInfo);
     renderButtons();
-    $(document).on("click", ".topic-btn", imgGet);
+    // $(document).on("click", ".topic-btn", imgGet);
 
     // 
     function clear() {
@@ -187,83 +208,82 @@ $(document).ready(function () {
     // Converts image to canvas; returns new canvas element
 
     //TODO: we are unsure if this is what we want to use
-    function convertImageToCanvas(image) {
-        // var canvas = document.createElement("canvas");
-        // canvas.width = image.width;
-        // canvas.height = image.height;
-        // canvas.getContext("2d").drawImage(image, 0, 0);
+    //     function convertImageToCanvas(image) {
+    //         // var canvas = document.createElement("canvas");
+    //         // canvas.width = image.width;
+    //         // canvas.height = image.height;
+    //         // canvas.getContext("2d").drawImage(image, 0, 0);
 
-        var cors = "https://cors-anywhere.herokuapp.com/";
-        // var image = new Image();
-        // image.src = cors + imgSrc;;
-        var filename = cors + imgSrc;
-        //console.log("Archive: " + filename);
-        // take any image
-        // let imag = document.querySelector('.selectedImg');
-        // var reader = new FileReader();
-        // reader.onloadend = function (evt) {
-        //   var blob = new Blob([evt.target.result], { type: "image/jpeg" });
-        //   var storageUrl = filename;
-        //   var storageRef = firebase.storage().ref(storageUrl);
-        //  // console.warn(file); // Watch Screenshot
-        //   var uploadTask = storageRef.put(blob);
-        // }
-        // reader.onerror = function (e) {
-        //     console.log("Failed file read: " + e.toString());
-        // };
-        // reader.readAsArrayBuffer(file);
+    //         var cors = "https://cors-anywhere.herokuapp.com/";
+    //         // var image = new Image();
+    //         // image.src = cors + imgSrc;;
+    //         var filename = cors + imgSrc;
+    //         //console.log("Archive: " + filename);
+    //         // take any image
+    //         // let imag = document.querySelector('.selectedImg');
+    //         // var reader = new FileReader();
+    //         // reader.onloadend = function (evt) {
+    //         //   var blob = new Blob([evt.target.result], { type: "image/jpeg" });
+    //         //   var storageUrl = filename;
+    //         //   var storageRef = firebase.storage().ref(storageUrl);
+    //         //  // console.warn(file); // Watch Screenshot
+    //         //   var uploadTask = storageRef.put(blob);
+    //         // }
+    //         // reader.onerror = function (e) {
+    //         //     console.log("Failed file read: " + e.toString());
+    //         // };
+    //         // reader.readAsArrayBuffer(file);
 
-        //TODO: this code was written by phil, we don't fully understand it
-        var arrayBufferView = new Uint8Array("./assets/images/yoda1.jpg");
-        var blob = new Blob([arrayBufferView], {
-            type: "image/jpg"
-        });
-        var storageRef = firebase.storage().ref(filename);
-        var uploadTask = storageRef.put(blob);
+    //         //TODO: this code was written by phil, we don't fully understand it
+    //         var arrayBufferView = new Uint8Array("./assets/images/yoda1.jpg");
+    //         var blob = new Blob([arrayBufferView], {
+    //             type: "image/jpg"
+    //         });
+    //         var storageRef = firebase.storage().ref(filename);
+    //         var uploadTask = storageRef.put(blob);
 
-        return canvas;
-    }
+    //         return canvas;
+    //     }
 
-    // 
-    function convertCanvasToImage(canvas) {
-        var image = new Image();
-        image.src = canvas.toDataURL("image/png");
+    //     // 
+    //     function convertCanvasToImage(canvas) {
+    //         var image = new Image();
+    //         image.src = canvas.toDataURL("image/png");
 
+    //         return image;
+    //     }
+    //     convertCanvasToImage();
+    //     //
+    //     //TODO: on click may not be function need more information to see problem 
+    //     //TODO: get image to save in firebase/ fix tainted error
+    //     $("#submit-btn").click(function () {
+    //         var cors = "https://cors-anywhere.herokuapp.com/";
+    //         var blobImg = new Image();
+    //         blobImg.crossOrigin = 'anonymous';
+    //         blobImg.src = cors + imgSrc;
+    //         console.log(blobImg.src)
+    //         convertImageToCanvas(blobImg)
 
-        return image;
-    }
-    convertCanvasToImage();
-    //
-    //TODO: on click may not be function need more information to see problem 
-    //TODO: get image to save in firebase/ fix tainted error
-    $("#submit-btn").click(function () {
-        var cors = "https://cors-anywhere.herokuapp.com/";
-        var blobImg = new Image();
-        blobImg.crossOrigin = 'anonymous';
-        blobImg.src = cors + imgSrc;
-        console.log(blobImg.src)
-        convertImageToCanvas(blobImg)
-
-        var canvas = document.getElementById("myCanvas")
-        canvas.toBlob(function (blob) {
-                var newImg = document.createElement('img'),
-                    url = URL.createObjectURL(blob)
-                newImg.onload = function () {
-                    // no longer need to read the blob so it's revoked
-                    URL.revokeObjectURL(url)
-                }
-                newImg.src = url
-                // database.ref().push(newImg);
-            })
-            .toBlob(function (blob) {
-                var blobImg = new Image();
-                blobImg.crossOrigin = 'anonymous';
-                blobImg.src = blob;
-                database.ref().push(blobImg);
-            });
-    });
-    // end of FireBase Section
-    // 
+    //         var canvas = document.getElementById("myCanvas")
+    //         canvas.toBlob(function (blob) {
+    //                 var newImg = document.createElement('img'),
+    //                     url = URL.createObjectURL(blob)
+    //                 newImg.onload = function () {
+    //                     // no longer need to read the blob so it's revoked
+    //                     URL.revokeObjectURL(url)
+    //                 }
+    //                 newImg.src = url
+    //                 // database.ref().push(newImg);
+    //             })
+    //             .toBlob(function (blob) {
+    //                 var blobImg = new Image();
+    //                 blobImg.crossOrigin = 'anonymous';
+    //                 blobImg.src = blob;
+    //                 database.ref().push(blobImg);
+    //             });
+    //     });
+    //     // end of FireBase Section
+    //     // 
 
 
 });
