@@ -5,7 +5,7 @@ var firebaseConfig = {
     authDomain: "meme-generator-88fd0.firebaseapp.com",
     databaseURL: "https://meme-generator-88fd0.firebaseio.com",
     projectId: "meme-generator-88fd0",
-    storageBucket: "meme-generator-88fd0.appspot.com",
+    storageBucket: "gs://meme-generator-88fd0.appspot.com",
     messagingSenderId: "224407351995",
     appId: "1:224407351995:web:54bc95a22f657d7fa36f9e"
 };
@@ -14,7 +14,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 // 
 var database = firebase.database();
-// var storage = firebase.storage().ref(); 
+var storageRef = firebase.storage().ref();
 // 
 var str = $('#yoda-term').val();
 var info;
@@ -24,8 +24,15 @@ var topText;
 var canvas = document.getElementById("myCanvas");
 var topics2 = [];
 var topics = ["hold my beer, you will", "so cute is yoda"];
+var a = $("<button>");
 // 
-// works fine just turned off for testing
+function renderButtons() {
+    $("#buttons-view").empty();
+    for (var i = 0; i < topics.length; i++) {
+        a.addClass("topic-btn");
+        a.attr("data-topic", topics[i]);
+    }
+}
 // 
 function topicInfo() {
     str = $('#yoda-term').val();
@@ -45,37 +52,23 @@ function topicInfo() {
     $.ajax(settings).done(function (response) {
         $("#buttons-view").empty();
         for (var i = 0; i < topics.length; i++) {
-            var a = $("<button>");
-            a.addClass("topic-btn");
-            a.attr("data-topic", topics[i]);
             a.text(response.contents.translated);
+            renderButtons();
             $("#buttons-view").append(a);
             $(".topic-btn").click(function () {
                 console.log("clicked");
                 info = $(this).text();
-                console.log(info);
-                $("#top-text").val(info);
+                textInfo = info.split(",")
+                console.log(textInfo);
+                $("#top-text").val(textInfo[0]);
+                $("#bottom-text").val(textInfo[1]);
             });
         }
     });
+
 };
 // 
-function renderButtons() {
-    $("#buttons-view").empty();
-    for (var i = 0; i < topics.length; i++) {
-        var a = $("<button>");
-        a.addClass("topic-btn");
-        a.attr("data-topic", topics[i]);
-        // a.text(response.contents.translated);
-        $("#buttons-view").append(a);
-        $(".topic-btn").click(function () {
-            console.log("clicked");
-            info = $(this).text();
-            console.log(info);
-            $("#top-text").val(info);
-        });
-    }
-}
+
 //
 // $(document).on("click", ".topic-btn", topicInfo);
 // renderButtons();
@@ -146,7 +139,7 @@ $(document).ready(function () {
         context.lineWidth = canvas.width;
         context.textAlign = 'center';
         context.fillStyle = "#ffffff";
-        context.font = "50px Arial";
+        context.font = "40px Arial";
         console.log(base_image);
         // 
         base_image.onload = function () {
@@ -202,90 +195,34 @@ $(document).ready(function () {
     $("#clear-all").on("click", clear);
     // end of Meme section
     // 
+    $("#submit-btn").on("click", function () {
+        console.log("clicked")
+        createFile();
+    })
+    async function createFile() {
 
-    //we haven't really touched this, welcome everybody to he wild wild west
-    // FireBase Section
-    // Converts image to canvas; returns new canvas element
+        var imgArray = base_image.src.split('/');
+        var imageFileName = imgArray[imgArray.length - 1];
+        console.log(imgArray[imgArray.length - 1])
 
-    //TODO: we are unsure if this is what we want to use
-    //     function convertImageToCanvas(image) {
-    //         // var canvas = document.createElement("canvas");
-    //         // canvas.width = image.width;
-    //         // canvas.height = image.height;
-    //         // canvas.getContext("2d").drawImage(image, 0, 0);
+        let response = await fetch(base_image.src);
+        let data = await response.blob();
+        let metadata = {
+            type: 'image/jpeg'
+        };
+        let file = new File([data], imageFileName, metadata);
 
-    //         var cors = "https://cors-anywhere.herokuapp.com/";
-    //         // var image = new Image();
-    //         // image.src = cors + imgSrc;;
-    //         var filename = cors + imgSrc;
-    //         //console.log("Archive: " + filename);
-    //         // take any image
-    //         // let imag = document.querySelector('.selectedImg');
-    //         // var reader = new FileReader();
-    //         // reader.onloadend = function (evt) {
-    //         //   var blob = new Blob([evt.target.result], { type: "image/jpeg" });
-    //         //   var storageUrl = filename;
-    //         //   var storageRef = firebase.storage().ref(storageUrl);
-    //         //  // console.warn(file); // Watch Screenshot
-    //         //   var uploadTask = storageRef.put(blob);
-    //         // }
-    //         // reader.onerror = function (e) {
-    //         //     console.log("Failed file read: " + e.toString());
-    //         // };
-    //         // reader.readAsArrayBuffer(file);
+        console.log(file)
+        var filename = imageFileName.split(".")
+        storageRef.child('images/' + filename[0]).put(file).then(function (snapshot) {
+            console.log('Uploaded a blob or file!');
+        });
 
-    //         //TODO: this code was written by phil, we don't fully understand it
-    //         var arrayBufferView = new Uint8Array("./assets/images/yoda1.jpg");
-    //         var blob = new Blob([arrayBufferView], {
-    //             type: "image/jpg"
-    //         });
-    //         var storageRef = firebase.storage().ref(filename);
-    //         var uploadTask = storageRef.put(blob);
-
-    //         return canvas;
-    //     }
-
-    //     // 
-    //     function convertCanvasToImage(canvas) {
-    //         var image = new Image();
-    //         image.src = canvas.toDataURL("image/png");
-
-    //         return image;
-    //     }
-    //     convertCanvasToImage();
-    //     //
-    //     //TODO: on click may not be function need more information to see problem 
-    //     //TODO: get image to save in firebase/ fix tainted error
-    //     $("#submit-btn").click(function () {
-    //         var cors = "https://cors-anywhere.herokuapp.com/";
-    //         var blobImg = new Image();
-    //         blobImg.crossOrigin = 'anonymous';
-    //         blobImg.src = cors + imgSrc;
-    //         console.log(blobImg.src)
-    //         convertImageToCanvas(blobImg)
-
-    //         var canvas = document.getElementById("myCanvas")
-    //         canvas.toBlob(function (blob) {
-    //                 var newImg = document.createElement('img'),
-    //                     url = URL.createObjectURL(blob)
-    //                 newImg.onload = function () {
-    //                     // no longer need to read the blob so it's revoked
-    //                     URL.revokeObjectURL(url)
-    //                 }
-    //                 newImg.src = url
-    //                 // database.ref().push(newImg);
-    //             })
-    //             .toBlob(function (blob) {
-    //                 var blobImg = new Image();
-    //                 blobImg.crossOrigin = 'anonymous';
-    //                 blobImg.src = blob;
-    //                 database.ref().push(blobImg);
-    //             });
-    //     });
-    //     // end of FireBase Section
-    //     // 
+        // var uploadTask = storageRef.child('images/' + "apple").put(file);
+        // ... do something with the file or return it
+    }
 
 
 });
-// End of Code 
+// End of Code
 //
