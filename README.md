@@ -107,4 +107,19 @@ SOFTWARE.
 - Website - [Adam M Murphy](https://adamm285.github.io/AdamMurphy'sPortfolio/)
 - Resume - [Adam Murphy Software Developer](https://docs.google.com/document/d/1GLxDLwlrQkmdugH2Xl9MsOv5Rz6rmzqqSrbzfTZ-R3E/edit?usp=sharing)
 
+----
+
+- LinkedIn - [@YemiBorisade](https://www.linkedin.com/in/yemi-b-463ab0197/)
+- Website - [Yemi Borisade](https://github.com/yemiborisade)
+
+----
+
+- LinkedIn - [@EricVincitore]()
+- Website - [Eric Vincitore]()
+
+----
+
+- LinkedIn - [@JoshuaWescott]()
+- Website - [Joshua Wescott]()
+
 [Back To The Top](#read-me-template)
