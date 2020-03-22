@@ -3,7 +3,8 @@
 
 # Read Me Template
 
-![Project Image](project-image-url)
+![Project Image](https://icdn2.digitaltrends.com/image/digitaltrends/baby-yoda.jpg)
+
 
 > This is a ReadMe template to help save you time and effort.
 
