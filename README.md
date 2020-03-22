@@ -32,6 +32,7 @@ API calls to a "Yoda Speak" translator and a second API call for popular images 
 - JavaScript
 - CSS
 - BootStrap
+- Firebase
 
 [Back To The Top](#read-me-template)
 
