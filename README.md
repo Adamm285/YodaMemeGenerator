@@ -16,6 +16,7 @@ You're sections headers will be used to reference location of destination.
 - [Description](#description)
 - [How To Use](#how-to-use)
 - [References](#references)
+- [Screen Shots](#screen-shots)
 - [License](#license)
 - [Author Info](#author-info)
 
@@ -66,6 +67,11 @@ API calls to a "Yoda Speak" translator and a second API call for popular images 
 [Back To The Top](#read-me-template)
 
 ---
+
+#### Screen Shots
+
+![Meme Generator](./assets/images/Capture1.PNG)
+![Meme Generator](./assets/images/Capture2.PNG)
 
 ## License
 
