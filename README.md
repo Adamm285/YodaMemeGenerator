@@ -1,17 +1,14 @@
 # YodaMemeGenerator
 
 
-# Read Me Template
-
 ![Project Image](https://icdn2.digitaltrends.com/image/digitaltrends/baby-yoda.jpg)
 
 
-> This is a ReadMe template to help save you time and effort.
+> Make fun yoda memes.
 
 ---
 
 ### Table of Contents
-You're sections headers will be used to reference location of destination.
 
 - [Description](#description)
 - [How To Use](#how-to-use)
